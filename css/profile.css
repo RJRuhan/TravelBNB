@@ -141,3 +141,11 @@ hr{
   float: right;
   margin: 5px 8px;
 }
+
+#SaveButton{
+  float: right;
+}
+
+.edit-section{
+  display: none;
+}

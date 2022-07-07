@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;900&family=Ubuntu&display=swap" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous"
+    referrerpolicy="no-referrer" />
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/504d9b5831.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/user_review.css">
+
+</head>
+
+<body>
+
+  <section id="body">
+
+    <div class="container-fluid">
+      <!-- Nav Bar -->
+      <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="">TravelBNB</a>
+        <div class="input-group rounded search-box">
+          <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+          <span class="input-group-text border-0" id="search-addon">
+            <i class="fas fa-search"></i>
+          </span>
+        </div>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"> <a class="nav-link btn rounded-5" href="">Add listing</a>
+          </li>
+          <li class="nav-item"> <a class="nav-link btn rounded-5" href="">Host</a>
+          </li>
+          <li class="nav-item"> <a class="nav-link btn rounded-5" href="">Saved</a>
+          </li>
+          <li class="nav-item"> <a class="nav-link btn rounded-5" href="">Trips</a>
+          </li>
+          <li class="nav-item"> <a class="nav-link btn rounded-5" href="">Messages</a>
+          </li>
+          <li class="nav-item"> <a class="nav-link btn rounded-5" href="">Help</a>
+          </li>
+          <li class="nav-item">
+            <div class="dropdown">
+              <a class="btn rounded-5" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="images/profile.jpg" alt="profile" class="profile-img1">
+              </a>
+
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li><a class="dropdown-item" href="#">Account</a></li>
+                <li><a class="dropdown-item" href="#">Invite Friends</a></li>
+                <li><a class="dropdown-item" href="#">Log Out</a></li>
+
+              </ul>
+            </div>
+          </li>
+        </ul>
+
+      </nav>
+
+      <div class="review">
+
+        <a href="#" class="link-dark no-underline-link">Profile</a><i class="fa-solid fa-chevron-right fa-xs icon"></i><span>Reviews</span><br>
+        <h3 id="margin-header">Reviews by you</h3>
+
+        <div class="review-box">
+          <a href="#" class="link-dark no-underline-link margin-link">Reviews about you</a>
+          <a href="#" class="link-dark no-underline-link margin-link">Reviews by you</a>
+          <hr>
+
+          <div class="row row1">
+            <div class="col-lg-12 col-header">
+              <p>Past reviews</p>
+            </div>
+            <div class="col-lg-12">
+              <p>Reviews are written at the end of a reservation through Airbnb. Reviews you’ve received will be visible both here and on your public profile.</p>
+              <br>
+              <p>No one has reviewed you yet.</p>
+
+            </div>
+
+          </div>
+
+          <div class="row row2">
+            <div class="col-lg-12 col-header">
+              <p>Reviews to write</p>
+            </div>
+            <div class="col-lg-12">
+              <p>Nobody to review right now. Looks like it’s time for another trip!</p>
+            </div>
+
+          </div>
+
+          <div class="row row3">
+            <div class="col-lg-12 col-header">
+              <p>Past reviews you’ve written</p>
+            </div>
+            <div class="col-lg-12">
+              <p>You have not written any reviews yet.</p>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+  <div class="copyright">
+    <hr>
+    <span>©2022 TravelBNB,Inc.</span>
+  </div>
+
+
+
+</body>
+
+</html>

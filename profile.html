@@ -23,7 +23,7 @@
 
     <div class="container-fluid">
       <!-- Nav Bar -->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="">TravelBNB</a>
 
         <ul class="navbar-nav ms-auto">
@@ -55,6 +55,7 @@
 
               </ul>
             </div>
+          </li>
         </ul>
 
       </nav>
@@ -75,6 +76,27 @@
           <h3>Hi, I'm Rizvan Jawad Ruhan</h3>
           <p style="font-size:.9rem">Joined in 2022</p>
           <a href="" class="link-dark">Edit profile</a>
+
+          <div class="edit-section">
+            <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label">About</label>
+              <textarea class="form-control form-control-lg" id="AboutTextArea" rows="3"></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label">Location</label>
+              <textarea class="form-control " id="LocationTextArea" rows="3"></textarea>
+            </div>
+
+
+            <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label">Work</label>
+              <textarea class="form-control " id="WorkTextArea" rows="3"></textarea>
+            </div>
+            <a href="" class="link-dark">Cancel</a>
+            <button type="button" class="btn btn-dark " id="SaveButton">Save</button>
+
+          </div>
           <br>
           <h4><i class="fa-solid fa-star icon"></i>0 reviews</h4>
           <hr>
@@ -82,8 +104,6 @@
           <hr>
         </div>
       </div>
-
-
     </div>
 
   </section>
