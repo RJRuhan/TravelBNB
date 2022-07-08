@@ -1,0 +1,2 @@
+on insert to wishlist
+check if a particular guest has the same property on a different wishlist

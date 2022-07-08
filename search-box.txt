@@ -1,0 +1,26 @@
+
+--html--
+<div class="input-group rounded search-box">
+  <input type="search" class="form-control input-box" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+  <span class="input-group-text border-0 span-box" id="search-addon">
+    <i class="fas fa-search search-icon"></i>
+  </span>
+</div>
+
+--css--
+.search-box {
+  margin-left: 350px;
+  max-width: 250px;
+}
+
+.search-icon{
+  color: white;
+}
+
+.span-box{
+  background-color: #FF385C;
+}
+
+.input-box{
+  border-right: none;
+}

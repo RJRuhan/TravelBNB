@@ -33,10 +33,6 @@ body {
   border: none;
 }
 
-.search-box {
-  max-width: 500px;
-}
-
 .profile-img1 {
   border-radius: 50%;
   max-width: 30px;
@@ -127,4 +123,21 @@ hr {
 
 .copyright span {
   font-size: 15px;
+}
+
+.search-box {
+  /* margin-left: 350px; */
+  max-width: 400px;
+}
+
+.search-icon{
+  color: white;
+}
+
+.span-box{
+  background-color: #FF385C;
+}
+
+.input-box{
+  border-right: none;
 }
