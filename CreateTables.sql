@@ -9,7 +9,7 @@ DROP TABLE WishList;
 DROP TABLE Reservation;
 
 DROP TABLE PropertyReview;
-;
+
 DROP TABLE Complaint;
 DROP TABLE Bedroom;
 DROP TABLE AvailableBookingSlot;
