@@ -22,7 +22,7 @@
             <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="">TravelBNB</a>
 
-                <form class="navbar-form mx-auto my-auto" role="search">
+                <form class="navbar-form mx-auto my-auto" role="search" action="/location-search" method="POST">
                     <div class="input-group">
                         <input type="text" class="form-control-md-5 rounded-3" id="location" placeholder="Search for locations" name="location">
                         <span class="input-group-btn">
@@ -94,7 +94,7 @@
                 <div class="col" style="border-right:2px solid black;">
                     <div class="content" id="filterOption">
                         <h4 style="margin-top:10px;">Filter Options:</h4>
-                        <form >
+                        <form action="/filter-properies" method="POST">
                             <div class="filter-panel">
                                 <div class="filter-title">
                                     Property type
