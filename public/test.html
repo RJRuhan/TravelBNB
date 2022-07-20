@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Sign up</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/signup.css" />
+</head>
+<body>
+    <div class="row px-6 py-6">
+        <div class="col">
+            <p>&nbsp;</p>
+        </div>
+    </div>
+
+    <div class="row px-3 py-3">
+        <div class="col">
+            <h1>Sign up</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-2" id="col1"></div>
+
+        <div class="col-md" id="info">
+            <form id="signupForm">
+                <div class="form-row px-1 py-1">
+
+                    <div class="form-group col">
+                        <label for="firstName">First Name:<small style="color:red">   *required</small></label>
+                        <input type="text" class="form-control" placeholder="First name" id="firstName" name="firstName" required>
+                    </div>
+
+                    <div class="form-group col">
+                        <label for="lastName">Last Name:<small style="color:red">   *required</small></label>
+                        <input type="text" class="form-control" placeholder="Last name" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="email" class="col-sm-3 col-form-label">Email address:<small style="color:red">   *required</small></label>
+                    <div class="col-sm-9">
+                        <input type="email" class="form-control" id="email" placeholder="example@email.com" name="email" required>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <label for="password" class="col-sm-3 col-form-label">Password:<small style="color:red">   *required</small></label>
+                    <div class="col-sm-9">
+                        <input type="password" class="form-control" id="password" placeholder="password" name="password" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="phone" class="col-sm-3 col-form-label">Phone number:<small style="color:red">   *required</small></label>
+                    <div class="col-sm-9">
+
+                        <input type="tel" id="phone" name="phone" class="form-control" pattern="[0-9]{11}" placeholder="Enter 11 digit phone number" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="dob" class="col-sm-3 col-form-label">Date of Birth:<small style="color:red">   *required</small></label>
+                   
+                    <div class="col-sm-9">
+                        <input type="date" id="dob" name="dob" class="form-control" placeholder="Date of Birth" required />
+
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="addPhoto" class="col-sm-3 col-form-label">Add picture:</label> 
+                    <div class="col-sm-9">
+
+                        <input type="file" id="addPhoto" name="addPhoto" class="form-control" accept=".jpg, .jpeg, .png">
+                    </div>
+                </div>
+                <div class="row px-1 py-1">
+                    <div class="col d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-sm-2" id="col2"></div>
+    </div>
+    <div class="container d-flex justify-content-center my-3" >
+        <p>Already have an account? <a href="login.html">Log in</a></p>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+
+    <script type="module" src="js/test.js"></script>
+</body>
+</html>

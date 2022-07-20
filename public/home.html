@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Welcome to TravelBnB </title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;900&family=Ubuntu&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/504d9b5831.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/home.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+    </style>
+</head>
+<body>
+    <section id="navigation">
+
+        <!-- Nav Bar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="">TravelBNB</a>
+
+            
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link btn rounded-5" href=""> Become a Host </a>
+                </li>
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <a class="btn rounded-5" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-bars"></i><img src="images/defaultUser.jpg" alt="profile" class="profile-img1">
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item" href="signup.html">Sign Up</a></li>
+                            <li><a class="dropdown-item" href="login.html">Log In</a></li>
+                     
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Host your home</a></li>
+                            
+                            <li><a class="dropdown-item" href="#">Help</a></li>
+    
+
+
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+
+        </nav>
+
+    </section>
+
+    
+
+    <section id="body">
+        <div class="back-image">
+
+            <div class="row px-5">
+                <div class="col">
+                <p>&nbsp;</p>
+                 </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    
+                </div>
+                <div class="col" id="search">
+                    <div class="container" >
+                        <form action="/first-search" method="POST">
+                            <p style="font-size:25px;font-family:Arial;text-align:center;"><b>Search for properties by location:</b></p>
+                            <div class="form-group row px-2 mb-3">
+                                <label for="destination" class="col-sm-3 col-form-label"><b>Where:</b></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="destination" name="destination" required>
+                                </div>
+                            </div>
+                            <div class="form-group row px-2">
+                                <label for="checkIn" class="col-sm-3 col-form-label"><b>Check-In Date:</b></label>
+                                <div class="col-sm-9">
+                                    <input type="date" class="form-control" id="checkIn" name="checkIn">
+                                </div>
+                            </div>
+                            <div class="form-group row px-2">
+                                <label for="checkOut" class="col-sm-3 col-form-label"><b>Check-Out Date:</b></label>
+                                <div class="col-sm-9">
+                                    <input type="date" class="form-control" id="checkOut" name="checkOut">
+                                </div>
+                            </div>
+
+                            <div class="row px-1 py-1">
+                                <div class="col d-flex justify-content-center">
+                                    <button type="submit" class="btn rounded-3" style="border:3px solid black">Search!</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+        
+        <div class="container" id="about">
+            <hr style="height:2px;border-width:2px;color:black;background-color:black"/>
+            <div class="row">
+                <div class="col-lg-7">
+                    <h3>About TravelBnB</h3><br />
+                    <p>
+                        TravelBnB is a website where you can rent properties and apartments. Select your desired property and place reservaion. You can also host your
+                        own properties by signing up as a host.Simply sign up by providing your name, email address, password and phone number. Then search through our
+                         collection of quality properties which must fulfill basic amenities. Select properties according to category, price range, location, ratings etc.
+                         Add properties to your wishlist.
+                        You can also view reviews given by previous guests. Chat with host to confirm your reservation and learn about the surrounding places. Give rating and reviews
+                        of the places you have rented. Give rating to the host as well. File a complaint if something seems wrong. <br /><br />
+                        Become a host for adding your own properties to listing. Your property must have all the required amenities. Add pictures to your properties and set price. Accept 
+                        reservations by the guests. Keep continuous contact with the guest through our messaging service. <br /><br />
+                        Find popular travel destinations within the area of visit. You can find the various popular sites and also the information about those sites. It is also possible to give 
+                        ratings and reviews of these places.
+                    </p>
+                </div>
+                <div class="col-sm py-4">
+                    <img src="images/example1.jpg" height="500"/>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+
+    <section class="footer">
+
+        <div class="container-fluid">
+            <div class="row footer-row">
+                <div class="col-lg-6 footer-column">
+                    <p class="header">Hosting</p>
+                    <a href="#" class="link-dark">Try hosting</a>
+                    <a href="#" class="link-dark">Explore hosting resources</a>
+                    <a href="#" class="link-dark">Visit our community forum</a>
+                    <a href="#" class="link-dark">How to host responsibly</a>
+
+                </div>
+                <div class="col-lg-6 footer-column">
+                    <p class="header">About</p>
+                    <a href="#" class="link-dark">Newsroom</a>
+                    <a href="#" class="link-dark">Learn about new features</a>
+                    <a href="#" class="link-dark">Letter from our founders</a>
+                    <a href="#" class="link-dark">Careers</a>
+
+
+
+
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            <hr>
+            <span>©2022 TravelBNB,Inc.</span>
+            <i class="fa-solid fa-circle footer-icon"></i>
+            <a href="#" class="link-dark">Privacy</a>
+            <i class="fa-solid fa-circle footer-icon"></i>
+            <a href="#" class="link-dark">Terms</a>
+            <i class="fa-solid fa-circle footer-icon"></i>
+            <a href="#" class="link-dark">Sitemap</a>
+
+
+
+            <a href="#" class="link-dark"><i class="fa-brands fa-instagram-square fa-lg social-media-icons"></i></a>
+            <a href="#" class="link-dark"><i class="fa-brands fa-twitter fa-lg social-media-icons"></i></a>
+            <a href="#" class="link-dark"><i class="fa-brands fa-facebook fa-lg social-media-icons"></i></a>
+        </div>
+
+    </section>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+
+</body>
+</html>
