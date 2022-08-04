@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Complaint</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="row px-6 py-6">
+        <div class="col">&nbsp;</div>
+    </div>
+    <div class="row px-3 py-3">
+        <div class="col" style="text-align:center">
+            <h2>Send complaint:</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3">
+
+        </div>
+        <div class="col">
+
+            <form>
+
+                <div class="form-group row px-2 py-2">
+                    <label for="name" class="col-sm-3 col-form-label">Your Name:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                </div>
+                <div class="form-group row px-2 py-2">
+                    <label for="email" class="col-sm-3 col-form-label">Your Email:</label>
+                    <div class="col-sm-9">
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                </div>
+
+                <div class="form-group row px-2 py-2">
+                    <label for="complaintType" class="col-sm-3 col-form-label">Complaint Type:</label>
+                    <div class="col-sm-9">
+                        <select id="complaintType" class="form-control" name="complaintType" onchange="change(this)" required>
+                            <option value="host">False advertisement of property by host</option>
+                            <option value="guest">Damage of property by guest</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row px-2 py-2">
+                    <label for="userID" class="col-sm-3 col-form-label">Enter userID of the <span id="against">host</span>:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="userID" name="userID" required>
+                    </div>
+                </div>
+                <div class="form-group row px-2 py-2">
+                    <label for="pID" class="col-sm-3 col-form-label">Property ID:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="pID" name="pID" required>
+                    </div>
+                </div>
+                <div class="form-group row px-2 py-2">
+                    <label for="reserveID" class="col-sm-3 col-form-label">Reservation ID:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="reserveID" name="reserveID" required>
+                    </div>
+                </div>
+                <div class="form-group row px-2 py-2">
+                    <label class="form-label" for="description">Add Description (150 characters):</label>
+                    <textarea class="form-control" id="description" name="description" maxlength="150" rows="4"></textarea>
+
+                </div>
+                <div class="row px-1 py-1">
+                    <div class="col d-flex justify-content-center">
+                        <button type="submit" class="btn rounded-3" style="border:3px solid black">Submit</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <div class="col-sm-3">&nbsp;</div>
+    </div>
+
+    <script>
+        function change(el) {
+            var selected = el.value;
+            document.getElementById("against").innerText = selected;
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+
+</body>
+</html>
