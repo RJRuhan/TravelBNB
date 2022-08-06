@@ -22,7 +22,7 @@
             <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="">TravelBNB</a>
 
-                <form class="navbar-form mx-auto my-auto" role="search" action="/location-search" method="POST">
+                <form class="navbar-form mx-auto my-auto" role="search">
                     <div class="input-group">
                         <input type="text" class="form-control-md-5 rounded-3" id="location" placeholder="Search for locations" name="location">
                         <span class="input-group-btn">
@@ -34,12 +34,7 @@
                     </div>
                 </form>
 
-                <!--<div class="input-group rounded search-box">
-                    <input type="search" class="form-control input-box" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                    <span class="input-group-text border-0 span-box " id="search-addon">
-                        <i class="fas fa-search search-icon"></i>
-                    </span>
-                </div>-->
+                
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link btn rounded-5" href=""> Switch to Hosting </a>
@@ -80,7 +75,7 @@
                         <a class="nav-link active" aria-current="page" href="#">Search Properties</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Search Travel Destinations</a>
+                        <a class="nav-link" href="searchTA.html">Search Travel Destinations</a>
                     </li>
                 </ul>
             </div>
@@ -94,7 +89,7 @@
                 <div class="col" style="border-right:2px solid black;">
                     <div class="content" id="filterOption">
                         <h4 style="margin-top:10px;">Filter Options:</h4>
-                        <form action="/filter-properies" method="POST">
+                        <form >
                             <div class="filter-panel">
                                 <div class="filter-title">
                                     Property type
@@ -243,7 +238,7 @@
                                             </li>
                                             <li>
                                                 <input type="checkbox" id="amn-iron" name="amn-iron" value="iron" />
-                                                <label for="amn-iron">Iron</label>
+                                                <label for="amn-iron">Dryer</label>
                                             </li>
                                         </ul>
                                         <div class="filter-sub-title">
@@ -308,36 +303,38 @@
                     <div class="grid-container">
                         <div class="grid-item">
                             
-                                <div class="property-image">
+                                <div class="property-image" id="pID">
                                     <a href="#"><img src="images/villa.jpg" /></a>
                                     
-                               </div>
-                                <a href="#">
+
+                                </div>
+                                
                                     <div class="property-desc">
-                                        <table border="0" width="303px" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
+                                        <table>
 
                                             <tr class="1-row">
-                                                <td width="75%" style="padding-left:2px;" class="property-name">A beautiful villa</td>
-                                                <td width="25%" class="rating">4.9/5.0(340)</td>
+                                                <td class="property-name">A beautiful villa</td>
+                                                <td class="rating">4.9/5.0(340)</td>
                                             </tr>
                                             <tr>
-                                                <td width="75%" style="padding-left:2px;" class="location">Toronto, Canada</td>
+                                                <td class="location">Toronto, Canada</td>
                                             </tr>
                                             <tr>
-                                                <td width="75%" style="padding-left:2px;" class="bed-count">5 bedrooms</td>
+                                                <td class="bed-count">5 bedrooms</td>
                                             </tr>
                                             <tr>
-                                                <td width="75%" style="padding-left:2px;" class="rate"><span>&#36;</span>500 per night</td>
+                                                <td class="rate"><span>&#36;</span>500 per night</td>
                                             </tr>
                                         </table>
                                     </div>
-                                </a>
+                                
                             
                         </div>
                         
 
                     </div>
                 </div>
+                
             </div>
 
         </div>
@@ -407,7 +404,7 @@
             }
         }
 
-        
+       
     </script>
 
 
