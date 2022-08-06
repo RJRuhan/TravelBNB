@@ -23,3 +23,18 @@
     border: 1px solid black;
     width: 303px;
 }
+
+table {
+    border: 0;
+    width: 303px;
+    font-size:18px;
+}
+
+.property-name, .location{
+    width:75%;
+    padding-left:2px;
+}
+
+.rating {
+    width:25%;
+}

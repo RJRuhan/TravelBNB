@@ -1,0 +1,33 @@
+﻿.header {
+    padding: 30px;
+    text-align: center;
+}
+
+.info {
+    font-size: 20px;
+    text-align: center;
+}
+
+.container {
+    padding-top:20px;
+    text-align: center;
+    font-size: 30px;
+}
+
+.star{
+    font-size: 30px;
+    color: #cfcfcf;
+    display: inline-block;
+}
+
+.over{
+    color:#f1e49c;
+}
+
+.fix{
+    color:#ffd800;
+}
+
+#desc{
+    font-size:20px;
+}

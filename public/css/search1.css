@@ -84,10 +84,11 @@ body{
     padding-top:100px;
 }
 
-.result-title{
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.result-title {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 25px;
-    padding-left:10px;
+    padding-left: 10px;
+    text-decoration: underline;
 }
 
 
@@ -173,6 +174,7 @@ body{
     padding:0;
     
 }
+
 
 .filter-content li:hover{
     background-color:#f2f2f2;
@@ -330,4 +332,19 @@ hr{
 .social-media-icons{
   float: right;
   margin: 5px 8px;
+}
+
+table {
+    border: 0;
+    width: 303px;
+    font-size: 18px;
+}
+
+.property-name, .location, .bed-count, .rate {
+    width: 75%;
+    padding-left: 2px;
+}
+
+.rating {
+    width: 25%;
 }

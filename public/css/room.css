@@ -86,12 +86,12 @@ hr{
   padding: 3% 13% 0;
 }
 
-.property-name{
+#property-name{
   font-size: 1.5rem;
   font-weight: 600;
 }
 
-.property-title{
+#p-location{
   line-height: 1;
 }
 
@@ -132,7 +132,7 @@ hr{
 }
 
 .ta-details-primary{
-    font-size:30px;
+    font-size:20px;
     
 }
 
@@ -209,5 +209,6 @@ hr{
 
 .wishlist{
     float:right;
+    margin-bottom:-10px;
 }
 
