@@ -5,13 +5,12 @@
 -- DROP TABLE TouristAttraction;
 -- 
 -- DROP TABLE WishList;
+-- DROP TABLE Complaint;
 -- 
 -- DROP TABLE Reservation;
 -- 
 -- DROP TABLE PropertyReview;
 -- 
--- DROP TABLE Complaint;
--- DROP TABLE Bedroom;
 -- DROP TABLE AvailableBookingSlot;
 -- DROP TABLE PropertyPhoto;
 -- DROP TABLE PropertyAmenities;
@@ -20,13 +19,9 @@
 -- DROP TABLE Location;
 -- DROP TABLE Message;
 -- 
--- DROP TABLE BankAccount;
--- DROP TABLE CreditCard;
--- 
--- DROP TABLE HostReview;
--- 
 -- DROP TABLE Guest;
 -- DROP TABLE Host;
+-- DROP TABLE UserPhoto;
 -- DROP TABLE AirBNBUser;
 
 CREATE TABLE AirBNBUser(
@@ -35,16 +30,26 @@ CREATE TABLE AirBNBUser(
 	FirstName VARCHAR(20) NOT NULL,
 	LastName VARCHAR(20) NOT NULL,
 	Dob DATE NOT NULL,
-	ProfileImgTitle VARCHAR(20),
-	ProfileImg BLOB,
-	PhoneNo VARCHAR(15) NOT NULL,
-	Email VARCHAR(200) NOT NULL,
+-- 	ProfileImgTitle VARCHAR(20),
+	PhoneNo VARCHAR(15) NOT NULL UNIQUE,
+	Email VARCHAR(200) NOT NULL UNIQUE,
 	Password VARCHAR(20) NOT NULL,
-	LogInCnt INT DEFAULT 0,
-	LastLogIn TIMESTAMP,
-	Created DATE DEFAULT SYSDATE,
+-- 	LogInCnt INT DEFAULT 0,
+-- 	LastLogIn TIMESTAMP,
+-- 	Created DATE DEFAULT SYSDATE,
 	
 	PRIMARY KEY(UserID)
+
+);
+
+CREATE TABLE UserPhoto(
+	UserID INT,
+	ProfileImg VARCHAR(2000),
+	
+	PRIMARY KEY(UserID),
+	FOREIGN KEY(UserID)
+	REFERENCES AirBNBUser(UserID)
+	ON DELETE CASCADE
 
 );
 
@@ -74,58 +79,58 @@ CREATE TABLE Guest(
 	
 );
 
-CREATE TABLE HostReview(
-	
-	ReviewID INT,
-	HostID INT NOT NULL,
-	GuestID INT NOT NULL,
-	ReviewType VARCHAR(20),
-	Rating NUMBER(2,1),
-	Created TIMESTAMP NOT NULL,
-	Modified TIMESTAMP,
-	CommentForHost VARCHAR(1000),
-	
-	PRIMARY KEY(ReviewID),
-	FOREIGN KEY(HostID)
-	REFERENCES Host(HostID)
-	ON DELETE CASCADE,
-	FOREIGN KEY(GuestID)
-	REFERENCES Guest(GuestID)
-	ON DELETE CASCADE 
+-- CREATE TABLE HostReview(
+-- 	
+-- 	ReviewID INT,
+-- 	HostID INT NOT NULL,
+-- 	GuestID INT NOT NULL,
+-- 	ReviewType VARCHAR(20),
+-- 	Rating NUMBER(2,1),
+-- 	Created TIMESTAMP NOT NULL,
+-- 	Modified TIMESTAMP,
+-- 	CommentForHost VARCHAR(1000),
+-- 	
+-- 	PRIMARY KEY(ReviewID),
+-- 	FOREIGN KEY(HostID)
+-- 	REFERENCES Host(HostID)
+-- 	ON DELETE CASCADE,
+-- 	FOREIGN KEY(GuestID)
+-- 	REFERENCES Guest(GuestID)
+-- 	ON DELETE CASCADE 
+-- 
+-- );
+-- 
+-- CREATE TABLE BankAccount(
+-- 	
+-- 	AccountNo INT,
+-- 	AccountType VARCHAR(20) NOT NULL,
+-- 	RoutingNo INT NOT NULL,
+-- 	HostID INT NOT NULL,
+-- 	
+-- 	PRIMARY KEY(AccountNo),
+-- 	FOREIGN KEY(HostID)
+-- 	REFERENCES Host(HostID)
+-- 	ON DELETE CASCADE 
+-- 	
+-- );
 
-);
-
-CREATE TABLE BankAccount(
-	
-	AccountNo INT,
-	AccountType VARCHAR(20) NOT NULL,
-	RoutingNo INT NOT NULL,
-	HostID INT NOT NULL,
-	
-	PRIMARY KEY(AccountNo),
-	FOREIGN KEY(HostID)
-	REFERENCES Host(HostID)
-	ON DELETE CASCADE 
-	
-);
-
-CREATE TABLE CreditCard(
-	
-	CardNo INT,
-	CSV INT NOT NULL,
-	ExpirationDate DATE  NOT NULL,
-	CardHolderName VARCHAR(50) NOT NULL,
-	CardType CHAR(6) NOT NULL,
-	Address VARCHAR(100),
-	GuestID INT NOT NULL,
-	
-	PRIMARY KEY(CardNo),
-	FOREIGN KEY(GuestID) 
-	REFERENCES Guest(GuestID)
-	ON DELETE CASCADE
-	
-
-);
+-- CREATE TABLE CreditCard(
+-- 	
+-- 	CardNo INT,
+-- 	CSV INT NOT NULL,
+-- 	ExpirationDate DATE  NOT NULL,
+-- 	CardHolderName VARCHAR(50) NOT NULL,
+-- 	CardType CHAR(6) NOT NULL,
+-- 	Address VARCHAR(100),
+-- 	GuestID INT NOT NULL,
+-- 	
+-- 	PRIMARY KEY(CardNo),
+-- 	FOREIGN KEY(GuestID) 
+-- 	REFERENCES Guest(GuestID)
+-- 	ON DELETE CASCADE
+-- 	
+-- 
+-- );
 
 CREATE TABLE Message(
 	
@@ -145,16 +150,14 @@ CREATE TABLE Message(
 	REFERENCES Guest(GuestID)
 	ON DELETE CASCADE
 	
-
 );
 
-CREATE TABLE Location(
+CREATE TABLE Location(  -- may have to separate into different table (country)
 	
 	LocationID INT,
 	Country VARCHAR(20) NOT NULL,
 	State VARCHAR(20),
 	City VARCHAR(20),
-	Street VARCHAR(50),
 	
 	PRIMARY KEY(LocationID)
 
@@ -168,9 +171,9 @@ CREATE TABLE Property(
 	NumOfRatings INT DEFAULT 0,
 	PropertyName VARCHAR(50),
 	PricePerNight NUMBER(38,2),
-	Created TIMESTAMP NOT NULL,
+-- 	Created TIMESTAMP NOT NULL,
 	LocationID INT NOT NULL,
-	SpecificAddress VARCHAR(100),
+	Street VARCHAR(100),
 	Description VARCHAR(1000),
 	
 	HouseType CHAR(20),
@@ -183,8 +186,8 @@ CREATE TABLE Property(
 	CancellationType VARCHAR(10),
 	RefundRate NUMBER(2,1),
 	
-	CheckInDate DATE,
-	CheckOutDate DATE,
+	AvailableFrom DATE,
+	AvailableUpto DATE,
 	
 	
 	PRIMARY KEY(PropertyID),
@@ -228,7 +231,7 @@ CREATE TABLE PropertyPhoto(
 
 	PropertyID INT,
 	PhotoTitle VARCHAR(20),
-	ImageFile BLOB NOT NULL,
+	ImageFile BLOB NOT NULL, -- change
 	
 	PRIMARY KEY(PropertyID,PhotoTitle),
 	FOREIGN KEY(PropertyID)
@@ -237,73 +240,50 @@ CREATE TABLE PropertyPhoto(
 
 );
 
-CREATE TABLE AvailableBookingSlot(
+CREATE TABLE AvailableBookingSlot(  -- may need a lots of trigger
 	
 	PropertyID INT,
 	StartDate DATE,
 	EndDate DATE,
 
 
-	PRIMARY KEY(PropertyID,StartDate,EndDate),
+	PRIMARY KEY(PropertyID,StartDate),
 	FOREIGN KEY(PropertyID) 
 	REFERENCES Property(PropertyID)
 	ON DELETE CASCADE
 );
 
-CREATE TABLE Bedroom(
-	
-	PropertyID INT,
-	RoomNumber INT,
-	RoomType VARCHAR(20),
-	BedType VARCHAR(10),
-	BedCnt INT,
-	
-	PRIMARY KEY(PropertyID,RoomNumber),
-	FOREIGN KEY(PropertyID)
-	REFERENCES Property(PropertyID)
-	ON DELETE CASCADE
-
-);
-
-CREATE TABLE Complaint(
-	
-	ComplaintID INT,
-	GuestID INT NOT NULL,
-	HostID INT NOT NULL,
-	PropertyID INT NOT NULL,
-	ComplaintType VARCHAR(20),
-	Category VARCHAR(20),
-	Description VARCHAR(1000),
-	Image BLOB,
-
-	PRIMARY KEY(ComplaintID),
-	FOREIGN KEY(GuestID)
-	REFERENCES Guest(GuestID)
-	ON DELETE CASCADE,
-	FOREIGN KEY(HostID)
-	REFERENCES Host(HostID)
-	ON DELETE CASCADE,
-	FOREIGN KEY(PropertyID)
-	REFERENCES Property(PropertyID)
-	ON DELETE CASCADE
-);
+-- CREATE TABLE Bedroom(
+-- 	
+-- 	PropertyID INT,
+-- 	RoomNumber INT,
+-- 	RoomType VARCHAR(20),
+-- 	BedType VARCHAR(10),
+-- 	BedCnt INT,
+-- 	
+-- 	PRIMARY KEY(PropertyID,RoomNumber),
+-- 	FOREIGN KEY(PropertyID)
+-- 	REFERENCES Property(PropertyID)
+-- 	ON DELETE CASCADE
+-- 
+-- );
 
 CREATE TABLE PropertyReview(
 	
 	ReviewID INT,
 	PropertyID INT NOT NULL,
 	GuestID INT NOT NULL,
-	ReviewType VARCHAR(20),
-	Created TIMESTAMP NOT NULL,
-	Modified TIMESTAMP,
+-- 	ReviewType VARCHAR(20),
+-- 	Created TIMESTAMP NOT NULL,
+-- 	Modified TIMESTAMP,
 	CommentForProperty VARCHAR(1000),
 	
-	OverAllRating NUMBER(2,1),
-	LocationRating NUMBER(2,1),
-	CleanlinessRating NUMBER(2,1),
-	CommunicationRating NUMBER(2,1),
-	CheckInRating NUMBER(2,1),
-	AccuracyRating NUMBER(2,1),
+	Rating NUMBER(2,1),
+-- 	LocationRating NUMBER(2,1),
+-- 	CleanlinessRating NUMBER(2,1),
+-- 	CommunicationRating NUMBER(2,1),
+-- 	CheckInRating NUMBER(2,1),
+-- 	AccuracyRating NUMBER(2,1),
 
 	PRIMARY KEY(ReviewID),
 	FOREIGN KEY(PropertyID)
@@ -327,14 +307,14 @@ CREATE TABLE Reservation(
 	CheckOutDate DATE,
 	
 	GuestNum INT NOT NULL,
-	Created TIMESTAMP NOT NULL,
+-- 	Created TIMESTAMP NOT NULL,
 	TotalPrice NUMBER(38,2) NOT NULL,
-	AmountPaid NUMBER(38,2),
+-- 	AmountPaid NUMBER(38,2),
 	
-	IsCancelled CHAR NOT NULL CHECK(IsCancelled IN ('0','1')),
-	CancelDate TIMESTAMP,
-	RefundAmt NUMBER(38,2),
-	RefundPaid NUMBER(38,2),
+-- 	IsCancelled CHAR NOT NULL CHECK(IsCancelled IN ('0','1')),
+-- 	CancelDate TIMESTAMP,
+-- 	RefundAmt NUMBER(38,2),
+-- 	RefundPaid NUMBER(38,2),
 	
 	PRIMARY KEY(ReservationID),
 	
@@ -347,14 +327,42 @@ CREATE TABLE Reservation(
 
 );
 
+CREATE TABLE Complaint(
+	
+	ComplaintID INT,
+	ComplaintByID INT NOT NULL,
+	ComplaintAgainstID INT NOT NULL,
+	PropertyID INT NOT NULL,
+	ReservationID INT NOT NULL,
+	
+	ComplaintType VARCHAR(20),
+	Category VARCHAR(20),
+	Description VARCHAR(1000),
+-- 	Image BLOB,
+
+	PRIMARY KEY(ComplaintID),
+	FOREIGN KEY(ComplaintByID)
+	REFERENCES Guest(GuestID)
+	ON DELETE CASCADE,
+	FOREIGN KEY(ComplaintAgainstID)
+	REFERENCES Host(HostID)
+	ON DELETE CASCADE,
+	FOREIGN KEY(PropertyID)
+	REFERENCES Property(PropertyID)
+	ON DELETE CASCADE,
+	FOREIGN KEY(ReservationID)
+	REFERENCES Reservation(ReservationID)
+	ON DELETE CASCADE
+);
+
 CREATE TABLE WishList(
 	GuestID INT,
-	Name VARCHAR(100),
+-- 	Name VARCHAR(100),
 	PropertyID INT,
-	Created TIMESTAMP NOT NULL,
-	Modified TIMESTAMP,
+-- 	Created TIMESTAMP NOT NULL,
+-- 	Modified TIMESTAMP,
 	
-	PRIMARY KEY(GuestID,Name,PropertyID),
+	PRIMARY KEY(GuestID,PropertyID),
 	FOREIGN KEY(GuestID)
 	REFERENCES Guest(GuestID)
 	ON DELETE CASCADE,
@@ -369,11 +377,11 @@ CREATE TABLE TouristAttraction(
 	taID INT,
 	title VARCHAR(50),
 	Description VARCHAR(1000),
-	Url BLOB NOT NULL,
+	Url VARCHAR(2000) NOT NULL,
 	LocationID INT NOT NULL,
 	AvgRating NUMBER(2,1),
 	NumOfRatings INT DEFAULT 0,
-	SpecificAddress VARCHAR(100) NOT NULL,
+	street VARCHAR(100) NOT NULL,
 	
 	PRIMARY KEY(taID),
 	FOREIGN KEY(LocationID)
@@ -384,11 +392,12 @@ CREATE TABLE TouristAttraction(
 
 CREATE TABLE TAPhoto(
 	
+	PhotoID NUMBER GENERATED BY DEFAULT AS IDENTITY,
 	taID INT ,
-	PhotoTitle VARCHAR(20),
-	ImageFile BLOB NOT NULL,
+-- 	PhotoTitle VARCHAR(20),
+	ImageFile VARCHAR(2000) NOT NULL,
 	
-	PRIMARY KEY(taID,PhotoTitle),
+	PRIMARY KEY(PhotoID),
 	FOREIGN KEY(taID)
 	REFERENCES TouristAttraction(taID)
 	ON DELETE CASCADE
@@ -400,15 +409,15 @@ CREATE TABLE TAReview(
 	ReviewID INT,
 	taID INT NOT NULL,
 	userID INT NOT NULL,
-	ReviewType VARCHAR(20),
-	Created TIMESTAMP NOT NULL,
-	Modified TIMESTAMP,
+-- 	ReviewType VARCHAR(20),
+-- 	Created TIMESTAMP NOT NULL,
+-- 	Modified TIMESTAMP,
 	CommentForTA VARCHAR(1000),
 	
-	OverAllRating NUMBER(2,1),
-	LocationRating NUMBER(2,1),
-	CommunicationRating NUMBER(2,1),
-	AccuracyRating NUMBER(2,1),
+	Rating NUMBER(2,1),
+-- 	LocationRating NUMBER(2,1),
+-- 	CommunicationRating NUMBER(2,1),
+-- 	AccuracyRating NUMBER(2,1),
 
 	PRIMARY KEY(ReviewID),
 	FOREIGN KEY(taID)
@@ -428,12 +437,14 @@ CREATE TABLE Admin(
 	Email VARCHAR(30) NOT NULL,
 	Password VARCHAR(20) NOT NULL,
 	Dob DATE,
-	ProfileImgTitle VARCHAR(20),
-	ProfileImg BLOB,
+-- 	ProfileImg BLOB,
 	PhoneNo VARCHAR(15) NOT NULL,
-	Role VARCHAR(20),
+-- 	Role VARCHAR(20),
 	
 	PRIMARY KEY(AdminID)
 
 );
+
+
+
 
