@@ -22,10 +22,33 @@ async function insertUser(user){
 
 }
 
+async function checkUser(user){
+    const params = [user.email,user.password];
+    const query = "SELECT * FROM airbnbuser WHERE email = :1 AND password = :2";
+    const options = {};
+
+    const result = await execute(query,params,options);
+
+    return result;
+}
+
 async function findUserById(userId){
 
     const params = [userId];
     const query = "SELECT * FROM airbnbuser WHERE userid = :1";
+    const options = {};
+
+    const result = await execute(query,params,options);
+
+    // console.log(result.rows);
+
+    return result;
+}
+
+async function findUserByEmail(email){
+
+    const params = [email];
+    const query = "SELECT * FROM airbnbuser WHERE email = :1";
     const options = {};
 
     const result = await execute(query,params,options);
@@ -46,7 +69,31 @@ async function findUsers(){
     return result;
 }
 
+async function insertUserImage(userid,filepath){
 
+    const params = [userid,filepath];
+    const query = "INSERT INTO UserPhoto VALUES(:1,:2)";
+    const options = {
+        autoCommit: true,
+    };
+
+    const result = await execute(query,params,options);
+
+    // console.log(result);
+
+    return result;
+
+}
+
+
+module.exports = {
+    insertUser,
+    findUserById,
+    findUsers,
+    checkUser,
+    findUserByEmail,
+    insertUserImage
+}
 
 // async function findUsers2(){
 
@@ -96,11 +143,6 @@ async function findUsers(){
 // }
 
 
-module.exports = {
-    insertUser,
-    findUserById,
-    findUsers,
-}
 
 
 // async function toot(){
