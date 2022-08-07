@@ -336,16 +336,15 @@ CREATE TABLE Complaint(
 	ReservationID INT NOT NULL,
 	
 	ComplaintType VARCHAR(20),
-	Category VARCHAR(20),
 	Description VARCHAR(1000),
 -- 	Image BLOB,
 
 	PRIMARY KEY(ComplaintID),
 	FOREIGN KEY(ComplaintByID)
-	REFERENCES Guest(GuestID)
+	REFERENCES AirBNBUser(UserID)
 	ON DELETE CASCADE,
 	FOREIGN KEY(ComplaintAgainstID)
-	REFERENCES Host(HostID)
+	REFERENCES AirBNBUser(UserID)
 	ON DELETE CASCADE,
 	FOREIGN KEY(PropertyID)
 	REFERENCES Property(PropertyID)
