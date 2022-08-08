@@ -2,7 +2,7 @@ const API_URL = 'http://localhost:8000';
 
 async function httpLogIn(user){
   try {
-    return await fetch(`${API_URL}/users/login`, {
+    return await fetch(`${API_URL}/auth/login`, {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -20,17 +20,41 @@ async function httpGetUsers() {
     const response = await fetch(`${API_URL}/users`);
     return await response.json();
   }
-  
-  // Load launches, sort by flight number, and return as JSON.
-  async function httpGetLaunches() {
-    const response = await fetch(`${API_URL}/launches`);
-    const fetchedLaunches = await response.json();
-    return fetchedLaunches.sort((a, b) => {
-      return a.flightNumber - b.flightNumber;
+
+async function httpGetUserByEmail(email) {
+  try {
+    return await fetch(`${API_URL}/users/getByEmail/` + email, {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
+  } catch(err) {
+    // console.log(err);
+    return {
+      ok: false,
+      };
+    }
   }
+
+  async function httpGetUserPhoto(userId) {
+    try {
+      return await fetch(`${API_URL}/users/photo/` + userId, {
+        method: "get",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    } catch(err) {
+      // console.log(err);
+      return {
+        ok: false,
+        };
+      }
+    }
+
+
   
-  // Submit given launch data to launch system.
   async function httpSubmitUser(user) {
     try {
       return await fetch(`${API_URL}/users/add`, {
@@ -62,6 +86,41 @@ async function httpGetUsers() {
       };
     }
   }
+
+  async function httpAuthenticateUser(accessToken){
+
+    try{
+      return await fetch(`${API_URL}/auth/authenticate`, {
+        method: "get",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization:"Bearer " + accessToken,
+        },
+      });
+    }catch(err){
+      return {
+        ok : false,
+      };
+    }
+  }
+
+  async function httpSearchProperty(data) {
+    try {
+      return await fetch(`${API_URL}/property/search`, {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+    } catch(err) {
+      return {
+        ok: false,
+      };
+    }
+  }
+
+
   
   // Delete launch with given ID.
   // async function httpAbortLaunch(id) {
@@ -84,5 +143,8 @@ export{
     httpSubmitUser,
     httpLogIn,
     httpSendFiles,
-    API_URL,
+    httpAuthenticateUser,
+    httpGetUserByEmail,
+    httpGetUserPhoto,
+    httpSearchProperty,
 };

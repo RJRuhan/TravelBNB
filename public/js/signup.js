@@ -9,7 +9,6 @@ form.addEventListener("submit", submitForm);
 
 async function submitForm(e) {
     
-    console.log('here');
     e.preventDefault();
 
     const firstName = document.getElementById("firstName").value;

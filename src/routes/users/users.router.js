@@ -1,13 +1,13 @@
 const express = require('express');
 const multer = require('multer');
-const path = require('path');
 
 const {
     httpAddNewUser,
     httpGetUserById,
     httpGetUsers,
-    httpLogIn,
     httpAddUserImage,
+    httpGetUserByEmail,
+    httpGetUserPhoto,
 } = require('./users.controller');
 
 
@@ -31,17 +31,13 @@ const upload = multer({
 const usersRouter = express.Router();
 
 usersRouter.post('/add',httpAddNewUser);
-usersRouter.post('/login',httpLogIn);
 
 usersRouter.post("/imgUpload",upload.single("image"),httpAddUserImage);
 
+usersRouter.get('/getByEmail/:email',httpGetUserByEmail);
+usersRouter.get('/photo/:userid',httpGetUserPhoto);
 
 usersRouter.get('/:id',httpGetUserById);
 usersRouter.get('/',httpGetUsers);
-
-
-
-
-
 
 module.exports = usersRouter;

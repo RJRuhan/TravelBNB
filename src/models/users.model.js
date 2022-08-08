@@ -2,39 +2,14 @@ const {
     insertUser,
     findUserById,
     findUsers,
-    checkUser,
     findUserByEmail,
     insertUserImage,
+    findUserPhoto,
 } = require('./users.oracle');
 
 async function addNewUser(user){
     return await insertUser(user);
 
-}
-
-async function logIn(user){
-    const result = await checkUser(user);
-
-    if( result.success ){
-
-        const user = result.data.rows;
-
-        if( user.length === 0 )
-            return {
-                success:true,
-                found:false,
-            };
-
-        return {
-            success:true,
-            found:true,
-            data:result.data,
-        };
-    }
-
-    return{
-        success:false,
-    };
 }
 
 async function GetUserById(userId){
@@ -93,6 +68,32 @@ async function existsUserWithEmail(email){
     };
 }
 
+async function existsUserPhoto(userId){
+
+    const result = await findUserPhoto(userId);
+
+    if( result.success ){
+
+        const user = result.data.rows;
+
+        if( user.length === 0 )
+            return {
+                success:true,
+                found:false,
+            };
+
+        return {
+            success:true,
+            found:true,
+            data:result.data,
+        };
+    }
+
+    return{
+        success:false,
+    };
+}
+
 async function GetUsers(){
     return await findUsers();
 }
@@ -108,7 +109,7 @@ module.exports = {
     GetUserById,
     existsUserWithId,
     GetUsers,
-    logIn,
     existsUserWithEmail,
     addNewUserImage,
+    existsUserPhoto,
 }

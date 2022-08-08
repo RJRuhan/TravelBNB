@@ -22,16 +22,6 @@ async function insertUser(user){
 
 }
 
-async function checkUser(user){
-    const params = [user.email,user.password];
-    const query = "SELECT * FROM airbnbuser WHERE email = :1 AND password = :2";
-    const options = {};
-
-    const result = await execute(query,params,options);
-
-    return result;
-}
-
 async function findUserById(userId){
 
     const params = [userId];
@@ -49,6 +39,19 @@ async function findUserByEmail(email){
 
     const params = [email];
     const query = "SELECT * FROM airbnbuser WHERE email = :1";
+    const options = {};
+
+    const result = await execute(query,params,options);
+
+    // console.log(result.rows);
+
+    return result;
+}
+
+async function findUserPhoto(userId){
+
+    const params = [userId];
+    const query = "SELECT * FROM UserPhoto WHERE userid = :1";
     const options = {};
 
     const result = await execute(query,params,options);
@@ -90,9 +93,9 @@ module.exports = {
     insertUser,
     findUserById,
     findUsers,
-    checkUser,
     findUserByEmail,
-    insertUserImage
+    insertUserImage,
+    findUserPhoto
 }
 
 // async function findUsers2(){

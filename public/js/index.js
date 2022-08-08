@@ -1,13 +1,18 @@
 import{
-    httpGetUsers,
     httpLogIn,
-    API_URL
 } from "./requests.js"
 
-const loginBtn  = document.getElementById('loginBtn');
+import{
+    setCookie,
+    getCookie,
+} from "./cookies.js"
+
+const form  = document.getElementById('loginForm');
 
 
-loginBtn.addEventListener('click',async()=>{
+form.addEventListener('submit',async(e)=>{
+
+    e.preventDefault();
 
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
@@ -17,15 +22,17 @@ loginBtn.addEventListener('click',async()=>{
         password,
     });
 
-    console.log(response);
+    // console.log(getCookie("accessToken"));
+    // console.log(getCookie("refreshToken"));
+
 
     if( response.status === 200 ){
-        // const data = await response.json();
-        
-        // const res = await setUser(data['0']);
-        // console.log(user);
+        const tokens = await response.json();
 
-        //window.location.replace("home.html");
+        setCookie("accessToken",tokens.accessToken,15);
+        setCookie("refreshToken",tokens.refreshToken,15);
+
+        window.location.replace("home.html");
     }
     else if( response.status === 401 ){
         //alert("LogIn Failed");

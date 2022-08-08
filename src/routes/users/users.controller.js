@@ -1,13 +1,13 @@
+
 const {
     addNewUser,
     GetUserById,
     existsUserWithId,
     GetUsers,
-    logIn,
     existsUserWithEmail,
     addNewUserImage,
+    existsUserPhoto,
 } = require('../../models/users.model.js')
-
 
 async function httpAddNewUser(req,res){
     const user = req.body;
@@ -38,34 +38,6 @@ async function httpAddNewUser(req,res){
     
 }
 
-async function httpLogIn(req,res){
-
-    const user = req.body;
-    if( !user.email || !user.password ){
-            return res.status(400).json({
-                error:"Missing required user property"
-            });
-        }
-
-
-    const result =  await logIn(user);
-    
-    if(!result.success)
-        return res.status(500).json({
-            error:"Internal Server Error"
-        });
-    
-
-    if(!result.found)
-        return res.status(401).json({
-            error: 'Invalid email or Password',
-        });
-
-    console.log(result.data);
-
-    return res.status(200).json(result.data.rows);
-}
-
 async function httpGetUserById(req,res){
     const userId = Number(req.params.id);
     
@@ -90,9 +62,9 @@ async function httpGetUserById(req,res){
     return res.status(200).json(result.data.rows);
 }
 
-async function httpGetUserByEmail(email){
+async function httpGetUserByEmail(req,res){
 
-    const result = await existsUserWithEmail(email);
+    const result = await existsUserWithEmail(req.params.email);
 
     if(!result.success){
         return res.status(500).json({
@@ -154,11 +126,30 @@ async function httpAddUserImage(req,res){
     
 }
 
+async function httpGetUserPhoto(req,res){
+
+    const result = await existsUserPhoto(req.params.userid);
+
+    if(!result.success){
+        return res.status(500).json({
+            error:"Internal Server Error"
+        });
+    }
+
+    if(!result.found)
+        return res.status(404).json({
+            error: 'Photo not found',
+        });
+
+    return res.status(200).json(result.data.rows);
+}
+
 
 module.exports = {
     httpAddNewUser,
     httpGetUserById,
     httpGetUsers,
-    httpLogIn,
     httpAddUserImage,
+    httpGetUserByEmail,
+    httpGetUserPhoto
 };
