@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/searchProperties', (req, res)=>{
-    var country="Bangladesh"
+    var country="Bangladesh";
     res.render('searchProperties.ejs', {
         country:country
     })

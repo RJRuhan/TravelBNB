@@ -1,5 +1,20 @@
 const API_URL = 'http://localhost:8000';
 
+async function GoToPage(route){
+  try {
+    return await fetch(`${API_URL}/` + route, {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  } catch(err) {
+    return {
+      ok: false,
+    };
+  }
+}
+
 async function httpLogIn(user){
   try {
     return await fetch(`${API_URL}/auth/login`, {
@@ -147,4 +162,5 @@ export{
     httpGetUserByEmail,
     httpGetUserPhoto,
     httpSearchProperty,
+    GoToPage,
 };

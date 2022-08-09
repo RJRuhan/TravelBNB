@@ -348,3 +348,8 @@ table {
 .rating {
     width: 25%;
 }
+
+
+#propertyphotoes{
+  max-width: 300px;
+}

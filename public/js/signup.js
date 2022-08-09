@@ -32,6 +32,8 @@ async function submitForm(e) {
     
     if( files.files.length === 0  ){
         console.log('No files selected');
+        document.location.href = "/login";
+
         return;
     }
 
@@ -43,6 +45,8 @@ async function submitForm(e) {
     const res = await httpSendFiles(formData);
 
     console.log(res);
+
+    document.location.href = "/login";
 
 }
 
