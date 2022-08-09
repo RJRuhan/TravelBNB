@@ -13,7 +13,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/504d9b5831.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/search1.css">
+    <link rel="stylesheet" href="/css/search1.css">
 </head>
 <body>
     <section id="navigation">
@@ -28,7 +28,7 @@
                         <span class="input-group-btn">
                             <button type="submit" class="btn btn-md rounded-3" style="padding:0;">
                             
-                                <img src="images/search.jpg" width="40" alt="search">
+                                <img src="/images/search.jpg" width="40" alt="search">
                             </button>
                         </span>
                     </div>
@@ -42,7 +42,7 @@
                     <li class="nav-item">
                         <div class="dropdown">
                             <a class="btn rounded-5" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa-solid fa-bars"></i><img src="images/defaultUser.jpg" alt="profile" class="profile-img1">
+                                <i class="fa-solid fa-bars"></i><img src="/images/defaultUser.jpg" alt="profile" class="profile-img1">
                             </a>
 
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
@@ -323,7 +323,7 @@
                             </div>
                         </div> -->
                         
-                         <%/* for( let i = 0; i < result.length; i++ ) { %>
+                         <!-- <%/* for( let i = 0; i < result.length; i++ ) { %>
                             <div class="grid-item">
                                 <div class="'property-image" id="<%# result[i]['propertyID'] %>">
                                      
@@ -353,7 +353,39 @@
                                     </table>
                                 </div>
                             </div>
-                        <% } */%>
+                        <% } */%> -->
+
+                        <% result.forEach(element => { %>
+                            <div class="grid-item">
+                                <div class="property-image" id="<%= element.PROPERTYID %>">
+                                     
+                                       <!-- put  onclick="location.href = 'room?id=<%# result[i]['propertyID'] %>';" in the property-image div.
+                                        //then the room page will be accessed like 
+                                       // app.get('/room', function(req, res, next) {
+                                       //     res.render('room', {query : req.query.id});
+                                       // });-->
+                                     
+                                    <img src="<%= element.IMAGEFILE %>" id="propertyphotoes">
+                                </div>
+                                <div class="property-desc">
+                                    <table>
+                                        <tr class="1-row">
+                                            <td class="property-name"><%= element.PROPERTYNAME %></td>
+                                            <td class="rating"><%= element.AVGRATING %>/5.0(<%= element.NUMOFRATINGS %>)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="location"><%= element.CITY %>, <%= element.COUNTRY %></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bed-count"><%= element.BEDROOMCNT %></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="rate"><span>&#36;</span><%= element.PRICEPERNIGHT %> per night</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        <% }) %>
                         
 
                     </div>
