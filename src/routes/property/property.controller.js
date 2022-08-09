@@ -3,7 +3,9 @@ const {
 } = require('../../models/property.model.js')
 
 async function httpSearchProperty(req,res){
-    const result = await searchProperty(req.body);
+    console.log('toot');
+    console.log(req.body);
+    let result = await searchProperty(req.body);
 
     if(!result.success){
         return res.status(500).json({
@@ -11,9 +13,30 @@ async function httpSearchProperty(req,res){
         });
     }
 
-    return res.status(200).json(result.data.rows);
+    result = result.data.rows;
+
+    console.log(result);
+
+    res.render('searchProperties.ejs', {
+        country:req.body.country,
+        result:result,
+    })
+}
+
+async function renderSearchProperties(req,res){
+
+    var country="Bangladesh";
+    var result = await searchProperty({"dest":"Bangladesh"});
+    result = result.data.rows;
+    console.log(result);
+    res.render('searchProperties.ejs', {
+        country:country,
+        result:result,
+    })
+
 }
 
 module.exports = {
-    httpSearchProperty
+    httpSearchProperty,
+    renderSearchProperties,
 };
