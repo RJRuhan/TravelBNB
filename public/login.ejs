@@ -29,6 +29,11 @@
         <div class="col-md" id="col1"></div>
 
         <div class="col-md" id="info">
+        <% if(locals.message){ %>
+                <p style="color: red;">
+                    Invalid Login. Email or Password is incorrect.
+                </p>
+            <% } %>
             <form id="loginForm" action="auth/login" method="post">
 
 
