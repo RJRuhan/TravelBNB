@@ -1,0 +1,143 @@
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.container-fluid {
+  /* background-color: yellow; */
+  padding: 0 0 5%;
+}
+
+.navbar-brand {
+  font-family: "Ubuntu";
+  font-weight: bold;
+  margin-left: 5%;
+  font-size: 2rem;
+}
+
+.navbar-nav {
+  margin-right: 20px;
+}
+
+.navbar {
+  padding: 1rem 0 1rem;
+}
+
+.nav-item {
+  font-size: .9rem;
+  font-weight: bold;
+  margin-right: 7px;
+}
+
+.nav-link {
+  border: none;
+}
+
+.profile-img1 {
+  border-radius: 50%;
+  max-width: 30px;
+  margin-left: 10px;
+}
+
+.review {
+  margin-top: 100px;
+  padding: 3% 15%;
+}
+
+.dropdown-menu {
+  width: 250px;
+  margin-top: 10px;
+}
+
+.dropdown-item {
+  font-size: .9rem;
+}
+
+#dropdownMenuLink {
+  border: none;
+}
+
+h3 {
+  font-weight: bold;
+}
+
+.header {
+  font-weight: bold;
+}
+
+hr {
+  margin: 0;
+}
+
+.icon {
+  margin: 0 10px;
+  /* font-weight: lighter; */
+  /* font-size: .9rem; */
+}
+
+.no-underline-link {
+  text-decoration: none;
+}
+
+.margin-link {
+  margin-right: 8px;
+  font-size: .9rem;
+  padding-top: 5px;
+  padding-bottom: 3px;
+}
+
+.margin-link:active {
+  border-bottom: 2px solid #AAAAAA;
+}
+
+.col-header {
+  background-color: #EDEFED;
+}
+
+.row {
+  margin: 20px 0 0;
+  border: 2px solid #EDEFED;
+  font-size: .93rem;
+}
+
+.row p {
+  padding: 5px 5px 5px;
+}
+
+.review-box {
+  margin-top: 20px;
+  padding: 0 20% 0 0;
+}
+
+#margin-header {
+  margin-top: 20px;
+}
+
+.row2, .row3 {
+  display: none;
+}
+
+.copyright {
+  padding: 2% 10% 2% 10%;
+}
+
+.copyright span {
+  font-size: 15px;
+}
+
+.search-box {
+  /* margin-left: 350px; */
+  max-width: 400px;
+}
+
+.search-icon{
+  color: white;
+}
+
+.span-box{
+  background-color: #FF385C;
+}
+
+.input-box{
+  border-right: none;
+}

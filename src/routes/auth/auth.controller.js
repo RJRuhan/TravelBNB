@@ -10,12 +10,6 @@ let refreshTokens = [];
 async function httpLogIn(req,res){
 
     const user = req.body;
-    if( !user.email || !user.password ){
-            return res.status(400).json({
-                error:"Missing required user property"
-            });
-        }
-
 
     const result =  await logIn(user);
     
@@ -25,36 +19,36 @@ async function httpLogIn(req,res){
         });
     
 
-    if(!result.found)
-        return res.status(401).json({
-            error: 'Invalid email or Password',
+    if(!result.found){
+        const input = {
+            email: req.body.email,
+            password: req.body.password,
+        }
+        return res.render('login.ejs',{
+            message: "Invalid email or password",
+            user: input,
         });
-
+    }
+        
     console.log(result.data);
 
     const userObject = {
-        email: req.body.email
+        userid: result.data.rows[0].USERID
     }
 
-    const accessToken = generateAccessToken(userObject);
+    const accessToken = jwt.sign(userObject,process.env.ACCESS_TOKEN_SECRET);
     const refreshToken = jwt.sign(userObject,process.env.REFRESH_TOKEN_SECRET);
 
-    console.log({accessToken:accessToken});
+    let options = {
+        maxAge: 90000000, 
+        httpOnly: true
+    }
+    res.cookie('auth-token',accessToken,options);
 
     refreshTokens.push(refreshToken);
 
-    return res.status(200).json({
-        accessToken: accessToken,
-        refreshToken: refreshToken,
-    });
+    res.redirect('/index');
 }
-
-function generateAccessToken(user){
-    return jwt.sign(user,process.env.ACCESS_TOKEN_SECRET,{
-        expiresIn: '30m'
-    });
-}
-
 
 async function authenticateToken(req,res,next){
     const authHeader = req.headers["authorization"];

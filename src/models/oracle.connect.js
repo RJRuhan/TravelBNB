@@ -75,6 +75,7 @@ async function execute(query, params, options) {
         }
     }
 
+    console.log('successful query...');
     return {
         success: true,
         data: results,

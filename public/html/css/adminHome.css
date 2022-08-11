@@ -1,0 +1,46 @@
+﻿body
+{
+    
+}
+
+h1, h3{
+    margin-top:50px;
+    text-align:center;
+}
+
+#title {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+
+.see-control {
+    position: fixed;
+    top: 0;
+    left: 0;
+    border: 2px solid black;
+}
+
+.offcanvas-body a:visited, .offcanvas-body a:hover, .offcanvas-body a:link {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
+
+.info {
+    margin-top: 150px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+}
+
+.info img {
+    width: 300px;
+    margin-left: 300px;
+    margin-right:75px;
+    border: 1px solid grey;
+}
+
+.admin-info{
+    font-size:xx-large;
+}

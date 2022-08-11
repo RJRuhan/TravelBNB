@@ -1,0 +1,178 @@
+body{
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+ 
+
+}
+
+.container-fluid{
+  /* background-color: yellow; */
+  padding: 0 0 5%;
+}
+
+.navbar-brand{
+  font-family: "Ubuntu";
+  font-weight: bold;
+  margin-left: 5%;
+  font-size: 2rem;
+}
+
+.navbar-nav {
+  margin-right: 95px;
+}
+
+.nav-item {
+  margin-right: 20px;
+}
+
+.navbar {
+  padding:1rem 0 1rem;
+}
+
+.nav-link{
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+
+.back-image{
+    background-image: url(../images/background.jpg);
+    
+    height: 500px;
+    background-color: white;
+    background-position:center;
+    background-repeat:no-repeat;
+    border:5px solid black;
+    position:relative;
+    padding: 10px 0px 10px 0px;
+}
+
+#search{
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+
+#body {
+    padding: 10px 0px 10px 0px;
+}
+
+#about{
+    padding-top: 40px;
+    padding-left: 50px;
+}
+
+#about h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
+a:visited, a:link, a:active{
+    text-decoration: none;
+    color: black;
+}
+
+a:hover{
+    font-weight:bold;
+}
+
+
+.profile-img1 {
+    border-radius: 50%;
+    max-width: 30px;
+    margin-left: 10px;
+}
+
+.body-row{
+  padding: 5% 15% 0;
+  text-align: center;
+}
+
+.button1:hover{
+  border-color: black;
+
+}
+
+.body-column{
+  padding: 5% ;
+}
+
+.body-column > * {
+    margin: 15px 0;
+}
+
+.body-column p,a{
+  font-size: 1.2rem;
+}
+
+.body-column2{
+  text-align: left;
+}
+
+.dropdown-menu {
+  width: 250px ;
+  margin-top: 10px ;
+
+}
+
+.dropdown-item{
+  font-size: .9rem;
+}
+
+.icon{
+  margin: 5px;
+}
+
+h4,h5{
+  font-weight: bold;
+}
+
+.footer{
+  background-color: #F7F7F7;
+}
+
+.footer .container-fluid{
+  padding-bottom: 0;
+}
+
+.footer-row{
+  text-align: left;
+  padding: 0 20%;
+}
+
+.footer-column{
+  padding: 2% 4%;
+}
+
+.footer-column a{
+  display: block;
+  text-decoration: none;
+  line-height: 2.3;
+  font-size: .85rem;
+}
+
+.header{
+  font-weight: bold;
+}
+
+hr{
+  margin: 0;
+}
+
+.copyright{
+  padding: 2% 20%;
+}
+.copyright a,span{
+  font-size: 15px;
+}
+
+.footer-icon{
+  font-size: 3px;
+  margin: 0 5px;
+  padding: 10px 3px;
+  vertical-align: middle;
+}
+
+.social-media-icons{
+  float: right;
+  margin: 5px 8px;
+}

@@ -6,7 +6,7 @@
     <title>Add your listing</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/addProperty.css" />
+    <link rel="stylesheet" href="/css/addProperty.css" />
 </head>
 <body>
 
@@ -26,7 +26,7 @@
         </div>
         <div class="col">
 
-            <form name="add-form">
+            <form name="add-form" action="add" method="post" enctype="multipart/form-data">
 
                 <div class="form-group row px-2 py-2">
                     <label for="pName" class="col-sm-3 col-form-label">Property Name:</label>
@@ -81,7 +81,7 @@
                 <div class="form-group row px-2 py-2">
                     <label for="guest-no" class="col-sm-3 col-form-label">Maximum Guests:</label>
                     <div class="col-sm-9">
-                        <input type="number" min="1" class="form-control" pattern="[0-9]{2}" id="guest-no" name="guest-no" />
+                        <input type="number" min="1" class="form-control" pattern="[0-9]{2}" id="guest-no" name="guest_no" />
                     </div>
                 </div>
                 <div class="form-group row px-2 py-2">
@@ -93,18 +93,18 @@
                 <div class="form-group row px-2 py-2">
                     <div class="form-group col-sm">
                         <label for="aval-from">Available From date:</label>
-                        <input type="date" class="form-control" id="aval-from" name="aval-from" required />
+                        <input type="date" class="form-control" id="aval-from" name="aval_from" required />
                     </div>
                     <div class="form-group col-sm">
                         <label for="aval-until">Available Until date:</label>
-                        <input type="date" class="form-control" id="aval-until" name="aval-until" />
+                        <input type="date" class="form-control" id="aval-until" name="aval_until" />
                     </div>
                 </div>
                 <div class="form-group row px-2 py-2">
                     <p style="text-align:center;font-size:18px;"><b>Cancellation Policy:</b></p>
                     <div class="form-group col-sm">
                         <label for="is-refund">Can be Refunded?:</label>
-                        <select id="is-refund" class="form-control" name="is-refund" required onchange="check(this)">
+                        <select id="is-refund" class="form-control" name="is_refund" required onchange="check(this)">
                             <option value="no">No</option>
                             <option value="yes">Yes</option>
 
@@ -125,35 +125,35 @@
                         <p style="text-align:center"><b>Essentials:</b></p>
                         <ul>
                             <li>
-                                <input type="checkbox" id="amn-wifi" name="amn-wifi" value="wifi" required />
+                                <input type="checkbox" id="amn-wifi" name="amn_wifi" value="wifi"  />
                                 <label for="amn-wifi">Wifi</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn-kitchen" name="amn-kitchen" value="kitchen" required />
+                                <input type="checkbox" id="amn-kitchen" name="amn_kitchen" value="kitchen"  />
                                 <label for="amn-kitchen">Kitchen</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn-washer" name="amn-washer" value="washer" />
+                                <input type="checkbox" id="amn-washer" name="amn_washer" value="washer" />
                                 <label for="amn-washer">Washer</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn-dryer" name="amn-dryer" value="dryer" />
+                                <input type="checkbox" id="amn-dryer" name="amn_dryer" value="dryer" />
                                 <label for="amn-dryer">Dryer</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn-ac" name="amn-ac" value="ac" required />
+                                <input type="checkbox" id="amn-ac" name="amn_ac" value="ac" />
                                 <label for="amn-ac">AC</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn-heater" name="amn-heater" value="heater" />
+                                <input type="checkbox" id="amn-heater" name="amn_heater" value="heater" />
                                 <label for="amn-heater">Heater</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn-tv" name="amn-tv" value="tv" required />
+                                <input type="checkbox" id="amn-tv" name="amn_tv" value="tv" />
                                 <label for="amn-tv">TV</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn-iron" name="amn-iron" value="iron" />
+                                <input type="checkbox" id="amn-iron" name="amn_iron" value="iron" />
                                 <label for="amn-iron">Iron</label>
                             </li>
                         </ul>
@@ -162,27 +162,27 @@
                         <p style="text-align:center"><b>Features:</b><br /></p>
                         <ul>
                             <li>
-                                <input type="checkbox" id="amn-pool" name="amn-pool" value="pool" />
+                                <input type="checkbox" id="amn-pool" name="amn_pool" value="pool" />
                                 <label for="amn-pool">Pool</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn-tub" name="amn-tub" value="tub" />
+                                <input type="checkbox" id="amn-tub" name="amn_tub" value="tub" />
                                 <label for="amn-tub">Hot tub</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn-parking" name="amn-parking" value="parking" />
+                                <input type="checkbox" id="amn-parking" name="amn_parking" value="parking" />
                                 <label for="amn-parking">Parking</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn-gym" name="amn-gym" value="gym" />
+                                <input type="checkbox" id="amn-gym" name="amn_gym" value="gym" />
                                 <label for="amn-gym">Gym</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn-front" name="amn-front" value="front" />
+                                <input type="checkbox" id="amn-front" name="amn_front" value="front" />
                                 <label for="amn-front">Frontyard</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn-back" name="amn-back" value="back" />
+                                <input type="checkbox" id="amn-back" name="amn_back" value="back" />
                                 <label for="amn-back">Backyard</label>
                             </li>
                         </ul>

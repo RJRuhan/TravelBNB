@@ -30,9 +30,9 @@ const upload = multer({
 
 const usersRouter = express.Router();
 
-usersRouter.post('/add',httpAddNewUser);
+usersRouter.post('/signup',upload.single("addPhoto"),httpAddNewUser,httpAddUserImage);
 
-usersRouter.post("/imgUpload",upload.single("image"),httpAddUserImage);
+// usersRouter.post("/imgUpload",upload.single("image"),httpAddUserImage);
 
 usersRouter.get('/getByEmail/:email',httpGetUserByEmail);
 usersRouter.get('/photo/:userid',httpGetUserPhoto);

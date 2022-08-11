@@ -1,0 +1,214 @@
+body{
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+
+}
+
+.container-fluid{
+  /* background-color: yellow; */
+  padding: 0;
+}
+
+.navbar-brand{
+  font-family: "Ubuntu";
+  font-weight: bold;
+  margin-left: 5%;
+  font-size: 2rem;
+}
+
+.navbar-nav {
+  margin-right: 100px;
+}
+
+.nav-item {
+  margin-right: 20px;
+}
+
+.navbar {
+  padding:1rem 0 1rem;
+}
+
+.nav-link{
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.profile-img1 {
+  border-radius: 50%;
+  max-width: 30px;
+  margin-left: 10px;
+}
+
+.dropdown-menu {
+  width: 250px ;
+  margin-top: 10px ;
+
+}
+
+.dropdown-item{
+  font-size: .9rem;
+}
+
+.dropdown{
+  float: right;
+}
+
+hr{
+  margin: 0;
+}
+
+#location {
+    width: 500px;
+    height: 40px;
+}
+
+
+.search-box {
+  margin-left: 350px;
+  max-width: 250px;
+}
+
+.search-icon{
+  color: white;
+}
+
+.span-box{
+  background-color: #FF385C;
+  margin: 0;
+}
+
+.input-box{
+  border-right: none;
+}
+
+.property-info1{
+  margin-top: 90px;
+  padding: 3% 13% 0;
+}
+
+#property-name{
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+#p-location{
+  line-height: 1;
+}
+
+.property-img-div{
+    margin-top:5px;
+    background-color:rgb(207, 207, 207);
+    
+}
+
+.carousel-item img{
+    height:400px;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.show-photo-button{
+  float: right;
+  margin-top: 20px;
+}
+
+.icon{
+  margin-right: 8px;
+}
+
+.property-info2 {
+    padding: 0 13%;
+}
+
+
+#host-name{
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.property-details-primary,.property-special-features{
+  line-height: .8;
+}
+
+.ta-details-primary{
+    font-size:20px;
+    
+}
+
+.padded-col{
+  padding: 3%
+}
+
+
+.reservation{
+  padding: 10%;
+}
+
+.reservation-div{
+  border: 2px solid #AAAAAA;
+  padding: 5%;
+}
+
+
+.guest-input{
+  width: 50px;
+  height: 35px;
+  display: inline-block;
+  float:right;
+  margin-right:150px;
+}
+
+.reserve-button{
+    font-size: 1.2rem;
+    width: 300px;
+    background-color: #FF385C;
+    color: white;
+}
+
+
+
+
+.reserve-button-div{
+  text-align: center;
+}
+
+.full-price,.total-price,.service-fee{
+  float: right;
+}
+
+#review-number{
+  display: inline-block;
+}
+
+.review img {
+    width: 80px;
+    margin-left: 25px;
+    border: 1px solid grey;
+}
+
+.review {
+    border: 1px solid black;
+    margin: 10px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    max-width: 1000px;
+}
+
+.review-content {
+    margin-left: 50px;
+    font-size: 20px;
+}
+
+.r-name{
+    
+    font-weight:bold;
+    font-size:25px;
+}
+
+.wishlist{
+    float:right;
+    margin-bottom:-10px;
+}
+

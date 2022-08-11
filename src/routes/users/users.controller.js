@@ -9,33 +9,22 @@ const {
     existsUserPhoto,
 } = require('../../models/users.model.js')
 
-async function httpAddNewUser(req,res){
+async function httpAddNewUser(req,res,next){
     const user = req.body;
-    if( !user.firstName || !user.lastName || !user.email || !user.password ||
-        !user.phoneNo ){
-            return res.status(400).json({
-                error:"Missing required user property"
-            });
-        }
 
     user.dob = new Date(user.dob);
 
-    if(isNaN(user.dob)){
-        return res.status(400).json({
-            error:"Invalid user dob"
-        });
-    }
+    console.log(user);
 
     const result =  await addNewUser(user);
     
     if(!result.success)
-        return res.status(500).json({
-            error:"Internal Server Error"
-        });
+        return res.render('signup.ejs',{
+            message:"Email or Phone number already exists",
+        })
     
     console.log(result.data);
-    return res.status(201).json(user);
-    
+    next();
 }
 
 async function httpGetUserById(req,res){
@@ -97,6 +86,9 @@ async function httpGetUsers(req,res){
 async function httpAddUserImage(req,res){
     console.log(req.file);
 
+    if(!req.file)
+       return res.redirect('/login');
+
     const email = req.body.email;
     let result = await existsUserWithEmail(email);
 
@@ -113,7 +105,7 @@ async function httpAddUserImage(req,res){
 
     // console.log(result.data.rows);
 
-    result = await addNewUserImage(result.data.rows[0]['USERID'],req.file.filename);
+    result = await addNewUserImage(result.data.rows[0].USERID,'/images/usersProfilePic/' + req.file.filename);
 
     if(!result.success)
         return res.status(500).json({
@@ -122,26 +114,15 @@ async function httpAddUserImage(req,res){
     
     console.log(result.data);
     
-    return res.status(201).json('success');
+    res.redirect('/login');
     
 }
 
-async function httpGetUserPhoto(req,res){
+async function httpGetUserPhoto(req,res,next){
 
-    const result = await existsUserPhoto(req.params.userid);
-
-    if(!result.success){
-        return res.status(500).json({
-            error:"Internal Server Error"
-        });
-    }
-
-    if(!result.found)
-        return res.status(404).json({
-            error: 'Photo not found',
-        });
-
-    return res.status(200).json(result.data.rows);
+    req.query = await existsUserPhoto(req.user.USERID);
+    next();
+    
 }
 
 

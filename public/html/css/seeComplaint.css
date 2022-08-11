@@ -1,0 +1,42 @@
+﻿
+
+h3{
+    text-align:center;
+}
+
+.info img{
+    width: 120px;
+    margin-left: 50px;
+    border: 1px solid grey;
+}
+.info {
+    border: 1px solid black;
+    margin: auto;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    max-width: 1000px;
+}
+
+.info-desc {
+    margin-left: 50px;
+    font-size: 20px;
+}
+
+.complaints-list{
+    margin-left:270px;
+    margin-top:50px;
+    border:1px solid black;
+    max-width:1000px;
+    background-color:#fdf4f4;
+}
+
+.complaint{
+    padding:10px;
+    margin:10px 10px;
+    border:2px solid lightgrey;
+}
+
+.complaint-desc{
+    font-size:18px;
+}

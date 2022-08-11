@@ -1,0 +1,60 @@
+﻿body
+{
+    background-color:aliceblue;
+}
+
+#title{
+    font-size:25px;
+    font-weight:600;
+}
+
+
+.see-control {
+    position: fixed;
+    top: 0;
+    left: 0;
+    border: 2px solid black;
+}
+
+.offcanvas-body a:visited, .offcanvas-body a:hover, .offcanvas-body a:link {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
+
+.main-content {
+    margin-left: 225px;
+    background: #fff;
+    border-radius: 3px;
+    padding: 15px;
+}
+
+
+.list-view {
+    margin-top: 30px;
+}
+
+.item img{
+    width: 120px;
+    margin-left:25px;
+    border:1px solid grey;
+}
+.item {
+    
+    border: 1px solid black;
+    margin: 10px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    max-width: 1000px;
+}
+
+.item-desc{
+    margin-left:50px;
+    font-size:20px;
+}
+
+.item-actions .btn{
+    margin-left:30px;
+    margin-right:30px;
+}

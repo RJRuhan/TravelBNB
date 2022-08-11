@@ -216,7 +216,7 @@ CREATE TABLE PropertyAmenities(
 	HasParking CHAR CHECK(HasParking IN ('0','1')),
 	HasPool CHAR CHECK(HasPool IN ('0','1')),
 	HasGym CHAR CHECK(HasGym IN ('0','1')),
-	HasFirePlace CHAR CHECK(HasFirePlace IN ('0','1')),
+-- 	HasFirePlace CHAR CHECK(HasFirePlace IN ('0','1')),
 	HasFrontyard CHAR CHECK(HasFrontyard IN ('0','1')),
 	HasBackyard CHAR CHECK(HasBackyard IN ('0','1')),
 	
@@ -230,10 +230,8 @@ CREATE TABLE PropertyAmenities(
 CREATE TABLE PropertyPhoto(
 
 	PropertyID INT,
-	PhotoTitle VARCHAR(20),
-	ImageFile BLOB NOT NULL, -- change
+	ImageFile VARCHAR(2000) NOT NULL, -- change
 	
-	PRIMARY KEY(PropertyID,PhotoTitle),
 	FOREIGN KEY(PropertyID)
 	REFERENCES Property(PropertyID)
 	ON DELETE CASCADE

@@ -1,15 +1,21 @@
 const {
     searchProperty,
-} = require('../../models/property.model.js')
+    filterProperty,
+    addProperty,
+    existsLocation,
+    addNewLocation,
+} = require('../../models/property.model.js');
 
-async function httpSearchProperty(req,res){
-    console.log('toot');
+const { findPropertyByRowId, InsertPropertyImage, InsertNewPropertyAmenities } = require('../../models/property.oracle.js');
+
+async function httpSearchProperty(req, res) {
     console.log(req.body);
+
     let result = await searchProperty(req.body);
 
-    if(!result.success){
+    if (!result.success) {
         return res.status(500).json({
-            error:"Internal Server Error"
+            error: "Internal Server Error"
         });
     }
 
@@ -18,20 +24,215 @@ async function httpSearchProperty(req,res){
     console.log(result);
 
     res.render('searchProperties.ejs', {
-        country:req.body.country,
-        result:result,
+        country: req.body.destination,
+        result: result,
     })
 }
 
-async function renderSearchProperties(req,res){
+async function httpFilterProperties(req, res) {
+    console.log(req.body);
 
-    var country="Bangladesh";
-    var result = await searchProperty({"dest":"Bangladesh"});
+    var result = await filterProperty(req.body);
+
+    if (!result.success) {
+        return res.status(500).json({
+            error: "Internal Server Error"
+        });
+
+    }
+
+    result = result.data.rows;
+    console.log(result);
+
+
+    res.render('searchProperties.ejs', {
+        country: req.body.country,
+        result: result,
+    })
+}
+
+async function httpAddNewProperty(req, res, next) {
+    console.log(req.body);
+
+    console.log(req.user);
+
+    let result = await existsLocation(req.body);
+
+    if (!result.success) {
+        return res.status(500).json({
+            error: "Internal Server Error"
+        });
+    }
+    console.log('here');
+    if (!result.found) {
+        const result1 = await addNewLocation(req.body);
+
+        if (!result1.success) {
+            return res.status(500).json({
+                error: "Internal Server Error"
+            });
+        }
+        console.log('here');
+
+        result = await existsLocation(req.body);
+
+        if (!result.success) {
+            return res.status(500).json({
+                error: "Internal Server Error"
+            });
+        }
+    }
+
+    req.locationID = result.data.rows[0].LOCATIONID;
+    result = await addProperty(req);
+
+    if (!result.success) {
+        return res.status(500).json({
+            error: "Internal Server Error"
+        });
+
+    }
+
+    console.log(result.data);
+
+    result = await findPropertyByRowId(result.data);
+
+    if (!result.success)
+        return res.status(500).json({
+            error: "Internal Server Error"
+        });
+
+    req.property = result.data.rows[0];
+
+    console.log(req.property);
+
+    next();
+
+}
+
+async function httpAddPropertyImage(req, res, next) {
+    console.log(req.files);
+
+
+    if (!req.files)
+        return res.redirect('/index');
+
+    for (const file of req.files) {
+        const result = await InsertPropertyImage(req.property.PROPERTYID, '/images/propertypics/' + file.filename);
+
+        if (!result.success)
+            return res.status(500).json({
+                error: "Internal Server Error"
+            });
+    }
+
+    next();
+}
+
+function checkAmenity(req) {
+
+    if (req.body.amn_wifi)
+        req.body.amn_wifi = 1;
+    else
+        req.body.amn_wifi = 0;
+
+    if (req.body.amn_ac)
+        req.body.amn_ac = 1;
+    else
+        req.body.amn_ac = 0;
+
+    if (req.body.amn_tv)
+        req.body.amn_tv = 1;
+    else
+        req.body.amn_tv = 0;
+
+    if (req.body.amn_kitchen)
+        req.body.amn_kitchen = 1;
+    else
+        req.body.amn_kitchen = 0;
+
+    if (req.body.amn_heater)
+        req.body.amn_heater = 1;
+    else
+        req.body.amn_heater = 0;
+
+    if (req.body.amn_washer)
+        req.body.amn_washer = 1;
+    else
+        req.body.amn_washer = 0;
+
+    if (req.body.amn_iron)
+        req.body.amn_iron = 1;
+    else
+        req.body.amn_iron = 0;
+
+
+    if (req.body.amn_dryer)
+        req.body.amn_dryer = 1;
+    else
+        req.body.amn_dryer = 0;
+
+    if (req.body.amn_parking)
+        req.body.amn_parking = 1;
+    else
+        req.body.amn_parking = 0;
+
+
+    if (req.body.amn_pool)
+        req.body.amn_pool = 1;
+    else
+        req.body.amn_pool = 0;
+
+
+    if (req.body.amn_gym)
+        req.body.amn_gym = 1;
+    else
+        req.body.amn_gym = 0;
+
+
+    if (req.body.amn_front)
+        req.body.amn_front = 1;
+    else
+        req.body.amn_front = 0;
+
+
+    if (req.body.amn_back)
+        req.body.amn_back = 1;
+    else
+        req.body.amn_back = 0;
+
+
+}
+
+
+async function httpAddPropertyAmenities(req, res) {
+
+
+    checkAmenity(req);
+
+    console.log(req.body);
+    
+
+    const result = await InsertNewPropertyAmenities(req);
+
+    if (!result.success)
+        return res.status(500).json({
+            error: "Internal Server Error"
+        });
+
+
+    res.redirect('/index');
+}
+
+async function renderSearchProperties(req, res) {
+
+    var country = "Bangladesh";
+    var result = await searchProperty({ "dest": "Bangladesh" });
     result = result.data.rows;
     console.log(result);
     res.render('searchProperties.ejs', {
-        country:country,
-        result:result,
+        country: country,
+        result: result,
     })
 
 }
@@ -39,4 +240,8 @@ async function renderSearchProperties(req,res){
 module.exports = {
     httpSearchProperty,
     renderSearchProperties,
+    httpFilterProperties,
+    httpAddNewProperty,
+    httpAddPropertyImage,
+    httpAddPropertyAmenities,
 };

@@ -1,0 +1,117 @@
+﻿body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container-fluid {
+    padding: 0 0 1%;
+}
+
+.navbar-brand {
+    font-family: "Ubuntu";
+    font-weight: bold;
+    margin-left: 5%;
+    font-size: 2rem;
+}
+
+.navbar-nav {
+    margin-right: 95px;
+}
+
+.nav-item {
+    margin-right: 20px;
+}
+
+.navbar {
+    padding: 1rem 0 1rem;
+}
+
+.nav-link {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.tabbing .nav-link {
+    font-family: "Ubuntu";
+    font-size: 20px;
+}
+
+#options a:visited, #options a:link, #options a:active {
+    text-decoration: none;
+    color: black;
+}
+
+#options {
+    margin-top: 100px;
+}
+
+
+#navigation {
+    margin-bottom: 100px;
+}
+
+.profile-img1 {
+    border-radius: 50%;
+    max-width: 30px;
+    margin-left: 10px;
+}
+
+.header {
+    font-weight: bold;
+}
+
+hr {
+    margin: 0;
+    color: red;
+}
+
+h4, h5, h2 {
+    text-align: center;
+    font-weight: bold;
+}
+
+.dropdown-menu {
+    width: 250px;
+    margin-top: 10px;
+}
+
+.dropdown-item {
+    font-size: .9rem;
+}
+
+.list-view {
+    margin: auto;
+}
+
+.item img {
+    width: 120px;
+    margin-left: 25px;
+    border: 1px solid grey;
+}
+
+.item {
+    border: 1px solid black;
+    margin: auto;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    max-width: 1000px;
+}
+
+.item-desc {
+    margin-left: 50px;
+    font-size: 20px;
+}
+
+.item-actions .btn {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.add {
+    margin-top:20px;
+    margin-bottom:30px;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}

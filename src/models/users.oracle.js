@@ -8,7 +8,7 @@ const {
 
 async function insertUser(user){
 
-    const params = [ user.firstName,user.lastName,user.email,user.password,user.phoneNo,user.dob];
+    const params = [ user.firstName,user.lastName,user.email,user.password,user.phone,user.dob];
     const query = "INSERT INTO airbnbuser(firstname,lastname,email,password,phoneno,dob) VALUES(:1,:2,:3,:4,:5,:6)";
     const options = {
         autoCommit: true,
