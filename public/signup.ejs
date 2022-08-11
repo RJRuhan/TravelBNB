@@ -24,6 +24,11 @@
         <div class="col-sm-2" id="col1"></div>
 
         <div class="col-md" id="info">
+        <% if(locals.message){ %>
+                <p style="color: red;">
+                    Cannot create new account. Email or Phone number already exists.<br>
+                </p>
+            <% } %>
             <form id="signupForm" action="/users/signup" method="post" enctype="multipart/form-data">
                 <div class="form-row px-1 py-1">
 
