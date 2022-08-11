@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -89,41 +89,43 @@
                 <div class="col" style="border-right:2px solid black;">
                     <div class="content" id="filterOption">
                         <h4 style="margin-top:10px;">Filter Options:</h4>
-                        <form >
+                        <form method="post" action="/property/filter" >
                             <div class="filter-panel">
                                 <div class="filter-title">
                                     Property type
                                 </div>
-
                                 <div class="filter-content">
                                     <ul style="list-style:none;">
                                         <li>
-                                            <input type="checkbox" id="type-house" name="type-house" value="house" />
+                                            <input type="hidden" class="form-control" id="destination" name="country" value="<%= country %>"  required>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" id="type-house" name="type_house" value="house" />
                                             <label for="type-house">House</label>
                                         </li>
 
                                         <li>
 
-                                            <input type="checkbox" id="type-apartment" name="type-apartment" value="apartment" />
+                                            <input type="checkbox" id="type-apartment" name="type_apartment" value="apartment" />
                                             <label for="type-apartment">Apartment</label>
 
                                         </li>
 
                                         <li>
 
-                                            <input type="checkbox" id="type-castle" name="type-castle" value="castle" />
+                                            <input type="checkbox" id="type-castle" name="type_castle" value="castle" />
                                             <label for="type-castle">Castle</label>
 
                                         </li>
                                         <li>
 
-                                            <input type="checkbox" id="type-guesthouse" name="type-guesthouse" value="guesthouse" />
+                                            <input type="checkbox" id="type-guesthouse" name="type_guesthouse" value="guesthouse" />
                                             <label for="type-guesthouse">Guesthouse</label>
 
                                         </li>
                                         <li>
 
-                                            <input type="checkbox" id="type-tiny" name="type-tiny" value="tiny" />
+                                            <input type="checkbox" id="type-tiny" name="type_tiny" value="tiny" />
                                             <label for="type-tiny">Tiny Houses</label>
 
                                         </li>
@@ -137,9 +139,9 @@
                                 </div>
                                 <div class="filter-content">
                                     <div class="prices">
-                                        <input type="number" min="0" placeholder="min" class="price-input" pattern="[0-9]*" id="min-price" name="min-price" />
+                                        <input type="number" min="0" placeholder="min" class="price-input" pattern="[0-9]*" id="min-price" name="min_price" />
                                         <div class="splitter" style="color:black;float:left;width:10px;text-align:center">-</div>
-                                        <input type="number" min="0" placeholder="max" class="price-input" pattern="[0-9]*" id="max-price" name="max-price" />
+                                        <input type="number" min="0" placeholder="max" class="price-input" pattern="[0-9]*" id="max-price" name="max_price" />
                                     </div>
                                 </div>
                             </div>
@@ -209,35 +211,35 @@
                                         </div>
                                         <ul style="list-style:none;">
                                             <li>
-                                                <input type="checkbox" id="amn-wifi" name="amn-wifi" value="wifi" />
+                                                <input type="checkbox" id="amn-wifi" name="amn_wifi" value="wifi" />
                                                 <label for="amn-wifi">Wifi</label>
                                             </li>
                                             <li>
-                                                <input type="checkbox" id="amn-kitchen" name="amn-kitchen" value="kitchen" />
+                                                <input type="checkbox" id="amn-kitchen" name="amn_kitchen" value="kitchen" />
                                                 <label for="amn-kitchen">Kitchen</label>
                                             </li>
                                             <li>
-                                                <input type="checkbox" id="amn-washer" name="amn-washer" value="washer" />
+                                                <input type="checkbox" id="amn-washer" name="amn_washer" value="washer" />
                                                 <label for="amn-washer">Washer</label>
                                             </li>
                                             <li>
-                                                <input type="checkbox" id="amn-dryer" name="amn-dryer" value="dryer" />
+                                                <input type="checkbox" id="amn-dryer" name="amn_dryer" value="dryer" />
                                                 <label for="amn-dryer">Dryer</label>
                                             </li>
                                             <li>
-                                                <input type="checkbox" id="amn-ac" name="amn-ac" value="ac" />
+                                                <input type="checkbox" id="amn-ac" name="amn_ac" value="ac" />
                                                 <label for="amn-ac">AC</label>
                                             </li>
                                             <li>
-                                                <input type="checkbox" id="amn-heater" name="amn-heater" value="heater" />
+                                                <input type="checkbox" id="amn-heater" name="amn_heater" value="heater" />
                                                 <label for="amn-heater">Heater</label>
                                             </li>
                                             <li>
-                                                <input type="checkbox" id="amn-tv" name="amn-tv" value="tv" />
+                                                <input type="checkbox" id="amn-tv" name="amn_tv" value="tv" />
                                                 <label for="amn-tv">TV</label>
                                             </li>
                                             <li>
-                                                <input type="checkbox" id="amn-iron" name="amn-iron" value="iron" />
+                                                <input type="checkbox" id="amn-iron" name="amn_iron" value="iron" />
                                                 <label for="amn-iron">Dryer</label>
                                             </li>
                                         </ul>
@@ -246,27 +248,27 @@
                                         </div>
                                         <ul style="list-style:none;">
                                             <li>
-                                                <input type="checkbox" id="amn-pool" name="amn-pool" value="pool" />
+                                                <input type="checkbox" id="amn-pool" name="amn_pool" value="pool" />
                                                 <label for="amn-pool">Pool</label>
                                             </li>
                                             <li>
-                                                <input type="checkbox" id="amn-tub" name="amn-tub" value="tub" />
+                                                <input type="checkbox" id="amn-tub" name="amn_tub" value="tub" />
                                                 <label for="amn-tub">Hot tub</label>
                                             </li>
                                             <li>
-                                                <input type="checkbox" id="amn-parking" name="amn-parking" value="parking" />
+                                                <input type="checkbox" id="amn-parking" name="amn_parking" value="parking" />
                                                 <label for="amn-parking">Parking</label>
                                             </li>
                                             <li>
-                                                <input type="checkbox" id="amn-gym" name="amn-gym" value="gym" />
+                                                <input type="checkbox" id="amn-gym" name="amn_gym" value="gym" />
                                                 <label for="amn-gym">Gym</label>
                                             </li>
                                             <li>
-                                                <input type="checkbox" id="amn-front" name="amn-front" value="front" />
+                                                <input type="checkbox" id="amn-front" name="amn_front" value="front" />
                                                 <label for="amn-front">Frontyard</label>
                                             </li>
                                             <li>
-                                                <input type="checkbox" id="amn-back" name="amn-back" value="back" />
+                                                <input type="checkbox" id="amn-back" name="amn_back" value="back" />
                                                 <label for="amn-back">Backyard</label>
                                             </li>
                                         </ul>
