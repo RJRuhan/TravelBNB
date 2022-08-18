@@ -85,9 +85,7 @@ app.get('/user_id', verify, (req,res)=>{
     res.send({user_id : req.user.USERID});
 });
 
-app.get('/property/addProperty',verify,(req,res)=>{
-    res.render('addProperty.ejs');
-});
+
 
 
 app.get('/*',(req,res)=>{

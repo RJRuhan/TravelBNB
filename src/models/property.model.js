@@ -57,17 +57,23 @@ async function existsLocation(data){
     };
 }
 
-async function addProperty(data){
-
+function checkProperty(data){
     data.body.bedrooms = Number(data.body.bedrooms);
     data.body.baths = Number(data.body.baths);
     data.body.guest_no = Number(data.body.guest_no);
     data.body.price = Number(data.body.price);
 
-    if( data.body.is_refund == 'no' )
-        data.body.is_refund = '0';
-    else
-        data.body.is_refund = '1';
+    if( data.body.is_refund == 'no' ){
+        data.body.is_refund = 0;
+        data.body.refund_rate = 0
+        data.body.refund_period = 0;
+    }else
+        data.body.is_refund = 1;
+}
+
+async function addProperty(data){
+
+    checkProperty(data);
 
     console.log(data.body);
 
@@ -87,4 +93,5 @@ module.exports = {
     addProperty,
     existsLocation,
     addNewLocation,
+    checkProperty,
 };

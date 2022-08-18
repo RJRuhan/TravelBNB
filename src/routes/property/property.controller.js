@@ -4,9 +4,19 @@ const {
     addProperty,
     existsLocation,
     addNewLocation,
+    checkProperty,
 } = require('../../models/property.model.js');
 
-const { findPropertyByRowId, InsertPropertyImage, InsertNewPropertyAmenities } = require('../../models/property.oracle.js');
+const { 
+    findPropertyByRowId,
+    InsertPropertyImage, 
+    InsertNewPropertyAmenities,
+    InsertReview,
+    EditProperty,
+    EditAmenities, 
+    findPropertyById,
+    findLocationById
+} = require('../../models/property.oracle.js');
 
 async function httpSearchProperty(req, res) {
     console.log(req.body);
@@ -54,7 +64,7 @@ async function httpFilterProperties(req, res) {
 async function httpAddNewProperty(req, res, next) {
     console.log(req.body);
 
-    console.log(req.user);
+    // console.log(req.user);
 
     let result = await existsLocation(req.body);
 
@@ -63,7 +73,7 @@ async function httpAddNewProperty(req, res, next) {
             error: "Internal Server Error"
         });
     }
-    console.log('here');
+    // console.log('here');
     if (!result.found) {
         const result1 = await addNewLocation(req.body);
 
@@ -72,7 +82,7 @@ async function httpAddNewProperty(req, res, next) {
                 error: "Internal Server Error"
             });
         }
-        console.log('here');
+        // console.log('here');
 
         result = await existsLocation(req.body);
 
@@ -84,6 +94,8 @@ async function httpAddNewProperty(req, res, next) {
     }
 
     req.locationID = result.data.rows[0].LOCATIONID;
+
+
     result = await addProperty(req);
 
     if (!result.success) {
@@ -237,6 +249,82 @@ async function renderSearchProperties(req, res) {
 
 }
 
+
+async function httpAddReview(req,res){
+
+    console.log(req.body);
+    var result = await InsertReview(req);
+
+    if (!result.success)
+        return res.status(500).json({
+            error: "Internal Server Error"
+        });
+
+    console.log(result);
+    res.redirect('/index');
+
+
+}
+
+async function httpEditProperty(req,res,next){
+
+    console.log(req.body);
+    checkProperty(req);
+
+    var result = await EditProperty(req);
+
+    if (!result.success)
+        return res.status(500).json({
+            error: "Internal Server Error"
+        });
+
+
+    console.log(result);
+
+    req.property = {
+        PROPERTYID : req.body.propertyid,
+    }
+    next();
+
+}
+
+async function httpEditPropertyAmenities(req,res){
+
+    checkAmenity(req);
+
+    var result = await EditAmenities(req);
+
+    console.log(result);
+
+    res.redirect('/index');
+
+}
+
+async function renderEditPropertyPage(req,res){
+
+    req.body.propertyid = 3;
+
+    var result = await findPropertyById(req.body);
+
+    result = result.data.rows;
+
+    req.body.locationid = result[0].LOCATIONID;
+
+    var result2 = await findLocationById(req.body);
+
+    result[0].CITY = result2.data.rows[0].CITY;
+    result[0].COUNTRY = result2.data.rows[0].COUNTRY;
+
+    result[0].HOUSETYPE = result[0].HOUSETYPE.trim();
+
+    console.log(result);
+
+    res.render('editProperty.ejs',{
+        result:result,
+    });
+
+}
+
 module.exports = {
     httpSearchProperty,
     renderSearchProperties,
@@ -244,4 +332,8 @@ module.exports = {
     httpAddNewProperty,
     httpAddPropertyImage,
     httpAddPropertyAmenities,
+    httpAddReview,
+    httpEditProperty,
+    httpEditPropertyAmenities,
+    renderEditPropertyPage,
 };

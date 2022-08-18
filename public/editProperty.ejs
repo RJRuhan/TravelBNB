@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
     <title>Edit Property Details</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/addProperty.css" />
 </head>
@@ -24,100 +25,104 @@
         </div>
         <div class="col">
 
-            <form>
+            <form id="editPropertyForm" action="/property/editProperty/edit" method="post" enctype="multipart/form-data">
+                <input type="hidden" class="form-control" id="pid" name="propertyid" value="<%= result[0].PROPERTYID %>" >
 
                 <div class="form-group row px-2 py-2">
                     <label for="pName" class="col-sm-3 col-form-label">Property Name:</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="pName" name="pName" required>
+                        <input type="text" class="form-control" id="pName" name="pName" required value="<%= result[0].PROPERTYNAME %>">
                     </div>
                 </div>
 
                 <div class="form-group row px-2 py-2">
                     <label for="street" class="col-sm-3 col-form-label">Street Address:</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="street" name="street" readonly>
+                        <input type="text" class="form-control" id="street" name="street" readonly value="<%= result[0].STREET %>">
                     </div>
                 </div>
                 <div class="form-group row px-2 py-2">
                     <div class="form-group col-sm">
                         <label for="country">Country:</label>
-                        <input type="text" class="form-control" id="country" name="country" readonly>
+                        <input type="text" class="form-control" id="country" name="country" readonly value="<%= result[0].COUNTRY %>">
                     </div>
-                    <div class="form-group col-sm">
-                        <label for="state">State</label>
-                        <select id="state" class="form-control" name="state" readonly>
-
-                            <option value="n/a">Not applicable</option>
-                        </select>
-                    </div>
+                   
                     <div class="form-group col-sm">
                         <label for="city">City:</label>
-                        <input type="text" class="form-control" id="city" name="city" readonly>
+                        <input type="text" class="form-control" id="city" name="city" readonly value="<%= result[0].CITY %>">
                     </div>
                 </div>
                 <div class="form-group row px-2 py-2">
                     <label for="type" class="col-sm-3 col-form-label">Select House type:</label>
                     <div class="col-sm-9">
-                        <select id="type" class="form-control" name="type" required>
-                            <option value="house">House</option>
-                            <option value="apartment">Apartment</option>
-                            <option value="castle">Castle</option>
-                            <option value="guesthouse">Guesthouse</option>
-                            <option value="tiny-house">Tiny House</option>
+                        <select id="type" class="form-control" name="type" required >
+                            <option value="house" <%= result[0].HOUSETYPE === 'house' ? 'selected' : '' %> >House</option>
+                            <option value="apartment" <%= result[0].HOUSETYPE === 'apartment' ? 'selected' : '' %>>Apartment</option>
+                            <option value="castle" <%= result[0].HOUSETYPE === 'castle' ? 'selected' : '' %> >Castle</option>
+                            <option value="guesthouse" <%= result[0].HOUSETYPE === 'guesthouse' ? 'selected' : '' %> >Guesthouse</option>
+                            <option value="tiny_house" <%= result[0].HOUSETYPE === 'tiny_house' ? 'selected' : '' %> >Tiny House</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group row px-2 py-2">
                     <div class="form-group col-sm">
                         <label for="bedrooms">Bedrooms:</label>
-                        <input type="number" min="1" max="9" class="form-control" pattern="[0-9]{1}" id="bedrooms" name="bedrooms" required />
+                        <input type="number" min="1" max="9" class="form-control" pattern="[0-9]{1}" id="bedrooms" name="bedrooms" required value="<%= result[0].BEDROOMCNT %>"/>
                     </div>
                     
                     <div class="form-group col-sm">
                         <label for="baths">Bathrooms:</label>
-                        <input type="number" min="1" max="9" class="form-control" pattern="[0-9]{1}" id="baths" name="baths" required />
+                        <input type="number" min="1" max="9" class="form-control" pattern="[0-9]{1}" id="baths" name="baths" required value="<%= result[0].BATHROOMCNT %>"/>
                     </div>
                 </div>
                 <div class="form-group row px-2 py-2">
-                    <label for="guest-no" class="col-sm-3 col-form-label">Maximum Guests:</label>
+                    <label for="guest_no" class="col-sm-3 col-form-label">Maximum Guests:</label>
                     <div class="col-sm-9">
-                        <input type="number" min="1" class="form-control" pattern="[0-9]{2}" id="guest-no" name="guest-no" />
+                        <input type="number" min="1" class="form-control" pattern="[0-9]{2}" id="guest_no" name="guest_no" value="<%= result[0].GUESTNUM %>"/>
                     </div>
                 </div>
                 <div class="form-group row px-2 py-2">
                     <label for="price" class="col-sm-3 col-form-label">Price Per Night:</label>
                     <div class="col-sm-9">
-                        <input type="number" class="form-control" id="price" name="price" required />
+                        <input type="number" class="form-control" id="price" name="price" required value="<%= result[0].PRICEPERNIGHT %>"/>
                     </div>
                 </div>
                 <div class="form-group row px-2 py-2">
                     <div class="form-group col-sm">
-                        <label for="avl-from">Available From date:</label>
-                        <input type="date" class="form-control" id="aval-from" name="aval-from" required />
+                        <label for="aval_from">Available From date:</label>
+                        <input type="date" class="form-control" id="aval_from" name="aval_from" required value="<%= result[0].AVAILFROM %>"/>
                     </div>
                     <div class="form-group col-sm">
-                        <label for="avl-until">Available Until date:</label>
-                        <input type="date" class="form-control" id="aval-until" name="aval-until" />
+                        <label for="aval_until">Available Until date:</label>
+                        <input type="date" class="form-control" id="aval_until" name="aval_until" value="<%= result[0].AVAILUPTO %>"/>
                     </div>
                 </div>
                 <div class="form-group row px-2 py-2">
                     <p style="text-align:center;font-size:18px;"><b>Cancellation Policy:</b></p>
                     <div class="form-group col-sm">
-                        <label for="is-refund">Can be Refunded?:</label>
-                        <select id="is-refund" class="form-control" name="is-refund" required onchange="check(this)">
+                        <span id='variable1' hidden >
+                            <%= result[0].ISREFUNDABLE %>
+                        </span>
+                        <span id='variable2' hidden >
+                            <%= result[0].REFUNDRATE %>
+                        </span>
+                        <span id='variable3' hidden >
+                            <%= result[0].CANCELLATIONPERIOD %>
+                        </span>
+                        <label for="is_refund">Can be Refunded?:</label>
+                        <select id="is_refund" class="form-control" name="is_refund" required onchange="check(this)">
                             <option value="no">No</option>
                             <option value="yes">Yes</option>
 
                         </select>
                     </div>
                     <div class="form-group col-sm">
-                        <label for="refund-rate">Refund rate:</label>
-                        <input type="number" min="40" max="100" class="form-control" id="refund-rate" name="refund-rate" disabled />
+                        <label for="refund_rate">Refund rate:</label>
+                        <input type="number" min="40" max="100" class="form-control" id="refund_rate" name="refund_rate" disabled />
                     </div>
                     <div class="form-group col-sm">
-                        <label for="refund-period">Refund period:</label>
-                        <input type="number" min="3" class="form-control" id="refund-period" name="refund-period" disabled />
+                        <label for="refund_period">Refund period:(in days)</label>
+                        <input type="number" min="3" class="form-control" id="refund_period" name="refund_period" disabled />
                     </div>
                 </div>
                 <div class="form-group row px-2 py-2">
@@ -126,36 +131,36 @@
                         <p style="text-align:center"><b>Essentials:</b></p>
                         <ul>
                             <li>
-                                <input type="checkbox" id="amn-wifi" name="amn-wifi" value="wifi" required />
-                                <label for="amn-wifi">Wifi</label>
+                                <input type="checkbox" id="amn_wifi" name="amn_wifi" value="wifi" />
+                                <label for="amn_wifi">Wifi</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn-kitchen" name="amn-kitchen" value="kitchen" required />
-                                <label for="amn-kitchen">Kitchen</label>
+                                <input type="checkbox" id="amn_kitchen" name="amn_kitchen" value="kitchen" />
+                                <label for="amn_kitchen">Kitchen</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn-washer" name="amn-washer" value="washer" />
-                                <label for="amn-washer">Washer</label>
+                                <input type="checkbox" id="amn_washer" name="amn_washer" value="washer" />
+                                <label for="amn_washer">Washer</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn-dryer" name="amn-dryer" value="dryer" />
-                                <label for="amn-dryer">Dryer</label>
+                                <input type="checkbox" id="amn_dryer" name="amn_dryer" value="dryer" />
+                                <label for="amn_dryer">Dryer</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn-ac" name="amn-ac" value="ac" required />
-                                <label for="amn-ac">AC</label>
+                                <input type="checkbox" id="amn_ac" name="amn_ac" value="ac" />
+                                <label for="amn_ac">AC</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn-heater" name="amn-heater" value="heater" />
-                                <label for="amn-heater">Heater</label>
+                                <input type="checkbox" id="amn_heater" name="amn_heater" value="heater" />
+                                <label for="amn_heater">Heater</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn-tv" name="amn-tv" value="tv" required />
-                                <label for="amn-tv">TV</label>
+                                <input type="checkbox" id="amn_tv" name="amn_tv" value="tv" />
+                                <label for="amn_tv">TV</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn-iron" name="amn-iron" value="iron" />
-                                <label for="amn-iron">Iron</label>
+                                <input type="checkbox" id="amn_iron" name="amn_iron" value="iron" />
+                                <label for="amn_iron">Iron</label>
                             </li>
                         </ul>
                     </div>
@@ -163,35 +168,35 @@
                         <p style="text-align:center"><b>Features:</b><br /></p>
                         <ul>
                             <li>
-                                <input type="checkbox" id="amn-pool" name="amn-pool" value="pool" />
-                                <label for="amn-pool">Pool</label>
+                                <input type="checkbox" id="amn_pool" name="amn_pool" value="pool" />
+                                <label for="amn_pool">Pool</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn-tub" name="amn-tub" value="tub" />
-                                <label for="amn-tub">Hot tub</label>
+                                <input type="checkbox" id="amn_tub" name="amn_tub" value="tub" />
+                                <label for="amn_tub">Hot tub</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn-parking" name="amn-parking" value="parking" />
-                                <label for="amn-parking">Parking</label>
+                                <input type="checkbox" id="amn_parking" name="amn_parking" value="parking" />
+                                <label for="amn_parking">Parking</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn-gym" name="amn-gym" value="gym" />
-                                <label for="amn-gym">Gym</label>
+                                <input type="checkbox" id="amn_gym" name="amn_gym" value="gym" />
+                                <label for="amn_gym">Gym</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn-front" name="amn-front" value="front" />
-                                <label for="amn-front">Frontyard</label>
+                                <input type="checkbox" id="amn_front" name="amn_front" value="front" />
+                                <label for="amn_front">Frontyard</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn-back" name="amn-back" value="back" />
-                                <label for="amn-back">Backyard</label>
+                                <input type="checkbox" id="amn_back" name="amn_back" value="back" />
+                                <label for="amn_back">Backyard</label>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="form-group row px-2 py-2">
                     <label class="form-label" for="description">Add Description (150 characters):</label>
-                    <textarea class="form-control" id="description" name="description" maxlength="150" rows="4"></textarea>
+                    <textarea class="form-control" id="description" name="description" maxlength="150" rows="4" value="<%= result[0].DESCRIPTION %>"><%= result[0].DESCRIPTION %></textarea>
 
                 </div>
                 <div class="form-group row px-2 py-2">
@@ -214,20 +219,56 @@
     </div>
 
     <script>
+        window.addEventListener("load", findRefund);
+        async function findRefund(){
+            // console.log('here')
+            var set1 = document.getElementById("is_refund");
+            var set2 = document.getElementById("refund_rate");
+            var set3 = document.getElementById("refund_period");
+
+            var variable1 = document.getElementById("variable1").textContent.trim();
+            document.getElementById("variable1").remove();
+            var variable2 = document.getElementById("variable2").textContent.trim();
+            document.getElementById("variable2").remove();
+            var variable3 = document.getElementById("variable3").textContent.trim();
+            document.getElementById("variable3").remove();
+
+            // console.log(variable1);
+
+            if( variable1 == 0 ){
+                set1.value = "no";
+                set2.value="";
+                set3.value="";
+                set2.disabled = true;
+                set3.disabled = true;
+            }
+            else{
+                set1.value = "yes";
+                set2.disabled = false;
+                set3.disabled = false
+                set2.value = variable2;
+                set3.value = variable3;
+            }
+            
+        }
+
         function check(givenID) {
-            var input1 = document.getElementById("refund-rate");
-            var input2 = document.getElementById("refund-period");
+            var input1 = document.getElementById("refund_rate");
+            var input2 = document.getElementById("refund_period");
 
             if (givenID.value == "yes") {
                 input1.disabled = false;
-                input2.disabled = false
+                input2.disabled = false;
             }
             else {
+                input1.value="";
+                input2.value="";
                 input1.disabled = true;
                 input2.disabled = true;
             }
 
         }
+
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

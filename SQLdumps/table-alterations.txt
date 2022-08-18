@@ -1,0 +1,8 @@
+1. add visited tourist spot table
+2. remove avgrating and numofrating attributes from host and property. instead 
+calculate the values using procedure.
+3. add attribute bank account, money received with host and credit card info with 
+guest
+4. Transaction Table??
+5. drop attribute state from locations
+6. default 0 value in amenities, change char into number

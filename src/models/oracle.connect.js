@@ -6,8 +6,8 @@ oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
 async function startup() {
     console.log('starting up database.');
     await oracledb.createPool({
-        user: 'hr',
-        password: 'hr',
+        user: 'C##TRAVELBNB',
+        password: 'password',
         connectionString: 'localhost/orcl',
         poolMin: 4,
         poolMax: 10,

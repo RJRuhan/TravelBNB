@@ -7,6 +7,10 @@ const {
     httpAddNewProperty,
     httpAddPropertyImage,
     httpAddPropertyAmenities,
+    httpAddReview,
+    httpEditProperty,
+    httpEditPropertyAmenities,
+    renderEditPropertyPage,
 } = require('./property.controller');
 
 const multer = require('multer');
@@ -32,9 +36,31 @@ const propertyRouter = express.Router();
 
 propertyRouter.post('/search',verify,httpSearchProperty);
 propertyRouter.post('/filter',verify,httpFilterProperties);
-propertyRouter.post('/add',verify,upload.array('pictures',3),httpAddNewProperty,httpAddPropertyImage,httpAddPropertyAmenities);
+
+propertyRouter.get('/addProperty',verify,(req,res)=>{
+    res.render('addProperty.ejs');
+});
+
+propertyRouter.post('/addProperty/add',verify,upload.array('pictures',5),httpAddNewProperty,httpAddPropertyImage,httpAddPropertyAmenities);
 
 
+propertyRouter.get('/editProperty',verify,renderEditPropertyPage);
+
+propertyRouter.post('/editProperty/edit',verify,upload.array('pictures',5),httpEditProperty,httpAddPropertyImage,httpEditPropertyAmenities);
+
+
+
+
+
+propertyRouter.get('/addReview',verify,(req,res)=>{
+    res.render('addReview.ejs',{
+        pid: 2,
+        property: "Villa",
+        host: "DJ",
+    });
+})
+
+propertyRouter.post('/addReview/add',verify,httpAddReview);
 
 
 // propertyRouter.get('/searchProperties',renderSearchProperties);

@@ -35,3 +35,13 @@ function starRate(e) {
         }
     })
 }
+
+const form = document.getElementById("reviewForm");
+
+form.addEventListener('submit',(e)=>{
+
+    const fixElem = document.querySelectorAll('.fix');
+
+    document.getElementById("rating").value = fixElem.length;     
+    
+})
