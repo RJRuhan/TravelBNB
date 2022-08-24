@@ -6,6 +6,8 @@ const morgan = require('morgan');
 const usersRouter = require('./routes/users/users.router');
 const authRouter = require('./routes/auth/auth.router');
 const propertyRouter = require('./routes/property/property.router');
+const adminRouter = require('./routes/admin/admin.router');
+
 
 const {
     verify,
@@ -29,6 +31,7 @@ app.set('view engine', 'ejs')
 app.use('/users',usersRouter);
 app.use('/auth',authRouter);
 app.use('/property',propertyRouter);
+app.use('/admin',adminRouter);
 
 app.get('/',(req,res)=>{
     res.render('login.ejs',{
@@ -72,20 +75,6 @@ app.get('/login',(req,res)=>{
         },
     });
 });
-
-
-app.post('/logout', verify ,(req,res)=>{
-    //destroy token
-    res.cookie('auth-token', '', { maxAge:1 });
-    res.redirect('/login');
-});
-
-app.get('/user_id', verify, (req,res)=>{
-    //returns the id of logged in user
-    res.send({user_id : req.user.USERID});
-});
-
-
 
 
 app.get('/*',(req,res)=>{

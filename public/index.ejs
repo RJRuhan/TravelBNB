@@ -37,8 +37,8 @@
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
-                            <li><a class="dropdown-item" href="/signup">Sign Up</a></li>
-                            <li><a class="dropdown-item" href="/login">Log In</a></li>
+                            <!-- <li><a class="dropdown-item" href="/signup">Sign Up</a></li> -->
+                            <li><a class="dropdown-item" href="/auth/logout">Log Out</a></li>
                      
                             <li>
                                 <hr class="dropdown-divider">
@@ -85,13 +85,13 @@
                             <div class="form-group row px-2">
                                 <label for="checkIn" class="col-sm-3 col-form-label"><b>Check-In Date:</b></label>
                                 <div class="col-sm-9">
-                                    <input type="date" class="form-control" id="checkIn" name="checkIn">
+                                    <input type="date" class="form-control" id="checkIn" name="checkIn" required>
                                 </div>
                             </div>
                             <div class="form-group row px-2">
                                 <label for="checkOut" class="col-sm-3 col-form-label"><b>Check-Out Date:</b></label>
                                 <div class="col-sm-9">
-                                    <input type="date" class="form-control" id="checkOut" name="checkOut">
+                                    <input type="date" class="form-control" id="checkOut" name="checkOut" required>
                                 </div>
                             </div>
 

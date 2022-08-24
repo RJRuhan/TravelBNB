@@ -15,7 +15,9 @@ const {
     EditProperty,
     EditAmenities, 
     findPropertyById,
-    findLocationById
+    findLocationById,
+    findPropertyAmenity,
+    findLocationFunc,
 } = require('../../models/property.oracle.js');
 
 async function httpSearchProperty(req, res) {
@@ -66,36 +68,12 @@ async function httpAddNewProperty(req, res, next) {
 
     // console.log(req.user);
 
-    let result = await existsLocation(req.body);
+    var result = await findLocationFunc(req.body);
 
-    if (!result.success) {
-        return res.status(500).json({
-            error: "Internal Server Error"
-        });
-    }
-    // console.log('here');
-    if (!result.found) {
-        const result1 = await addNewLocation(req.body);
+    console.log(result);
 
-        if (!result1.success) {
-            return res.status(500).json({
-                error: "Internal Server Error"
-            });
-        }
-        // console.log('here');
-
-        result = await existsLocation(req.body);
-
-        if (!result.success) {
-            return res.status(500).json({
-                error: "Internal Server Error"
-            });
-        }
-    }
-
-    req.locationID = result.data.rows[0].LOCATIONID;
-
-
+    req.locationID = result.data.outBinds.locationID;
+    
     result = await addProperty(req);
 
     if (!result.success) {
@@ -302,7 +280,7 @@ async function httpEditPropertyAmenities(req,res){
 
 async function renderEditPropertyPage(req,res){
 
-    req.body.propertyid = 3;
+    req.body.propertyid = 2;
 
     var result = await findPropertyById(req.body);
 
@@ -316,6 +294,10 @@ async function renderEditPropertyPage(req,res){
     result[0].COUNTRY = result2.data.rows[0].COUNTRY;
 
     result[0].HOUSETYPE = result[0].HOUSETYPE.trim();
+
+    var result3 = await findPropertyAmenity(req.body);
+
+    result[0].amenities = result3.data.rows[0];
 
     console.log(result);
 

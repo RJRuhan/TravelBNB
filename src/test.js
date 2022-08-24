@@ -2,6 +2,7 @@
 // const portfinder = require('portfinder');
 // const app = require('./app');
 
+const OracleDB = require("oracledb");
 const { startup,shutdown,execute } = require("./models/oracle.connect");
 
 // const { shutdown, startup } = require('./models/oracle.connect');
@@ -51,22 +52,29 @@ async function execute2(query, params, options){
 async function todo(){
     await startup();
 
+    const binds = {ret:{
+        dir: OracleDB.BIND_OUT,type: OracleDB.NUMBER
+    }};
+    const query = `
+    BEGIN
+	    find_location('Bangladesh','Dhaka',:ret);
+    END;
+    `;
 
-    const params = [222];
-    const query = `DECLARE
-    MSG VARCHAR2(2000);
-   BEGIN
-       testProc1(:1,MSG);
-       DBMS_OUTPUT.PUT_LINE(MSG);
-   
-   END;`;
+    // var x;
+    // const params = [];
+    // const query = `
+    // SELECT find_location2('Bangladesh','Barishal') AS LOCATIONID FROM dual
+    // `;
 
     const options = {
     };
 
-    const result = await execute(query,params,options);
+    const result = await execute(query,binds,options);
 
     console.log(result);
+
+    console.log(x);
 
     return result;
 

@@ -1,4 +1,5 @@
 const express = require('express');
+const { verify } = require('../../middlewares/userVerify');
 const {
     httpLogIn,
     authenticateToken,
@@ -10,14 +11,14 @@ const authRouter = express.Router();
 
 authRouter.post('/login',httpLogIn);
 
-authRouter.get('/authenticate',authenticateToken,(req,res)=>{
-    res.status(200).json({
-        email:req.user.email,
-    })
-});
+// authRouter.get('/authenticate',authenticateToken,(req,res)=>{
+//     res.status(200).json({
+//         email:req.user.email,
+//     })
+// });
 
-authRouter.post('/token',httpGetNewAuthToken);
+// authRouter.post('/token',httpGetNewAuthToken);
 
-authRouter.delete('/logout',httpLogOut);
+authRouter.get('/logout',verify,httpLogOut);
 
 module.exports = authRouter;
