@@ -1,17 +1,30 @@
+const { 
+    checkAdmin,
+} = require('../../models/admin.oracle.js');
 
-const {
-    logIn,
-} = require('../../models/auth.model.js')
 
 const jwt = require('jsonwebtoken');
 
-let refreshTokens = [];
+let adminRefreshTokens = [];
 
-async function httpLogIn(req,res){
+async function httpAdminLogin(req,res){
 
     const user = req.body;
 
-    const result =  await logIn(user);
+    const result =  await checkAdmin(user);
+
+    if( result.success ){
+
+        const user = result.data.rows;
+
+        if( user.length === 0 ){
+            result.found = false;
+        }
+        else
+            result.found = true;
+        
+    }
+
     
     if(!result.success)
         return res.status(500).json({
@@ -33,22 +46,21 @@ async function httpLogIn(req,res){
     console.log(result.data);
 
     const userObject = {
-        userid: result.data.rows[0].USERID
+        userid: result.data.rows[0].ADMINID,
     }
 
-    const accessToken = jwt.sign(userObject,process.env.ACCESS_TOKEN_SECRET);
-    const refreshToken = jwt.sign(userObject,process.env.REFRESH_TOKEN_SECRET);
+    const accessToken = jwt.sign(userObject,process.env.ADMIN_ACCESS_TOKEN_SECRET);
+    const refreshToken = jwt.sign(userObject,process.env.ADMIN_REFRESH_TOKEN_SECRET);
 
     let options = {
         maxAge: 90000000, 
         httpOnly: true
     }
     res.cookie('auth-token',accessToken,options);
-    // res.cookie('refresh-token',refreshToken,options);
 
-    // refreshTokens.push(refreshToken);
+    // adminRefreshTokens.push(refreshToken);
 
-    res.redirect('/index');
+    res.redirect('/admin/dummy');
 }
 
 async function authenticateToken(req,res,next){
@@ -77,7 +89,7 @@ async function httpGetNewAuthToken(req,res){
     if( refreshToken === null )
         return res.sendStatus(401);
 
-    if( !refreshTokens.includes(refreshToken) )
+    if( !adminRefreshTokens.includes(refreshToken) )
         return res.sendStatus(403);
 
     jwt.verify(refreshToken,process.env.REFRESH_TOKEN_SECRET,(err,user)=>{
@@ -88,14 +100,13 @@ async function httpGetNewAuthToken(req,res){
 }
 
 async function httpLogOut(req,res){
-    // refreshTokens.filter(token=>token != req.body.token);
 
-
+    // adminRefreshTokens.filter(token=>token != req.body.token);
     res.cookie('auth-token', '', { maxAge:1 });
-    res.redirect('/login');
+    res.redirect('/admin/login');
 }
 
 module.exports = {
-    httpLogIn,
-    httpLogOut,
+    httpAdminLogin,
+    httpLogOut
 };

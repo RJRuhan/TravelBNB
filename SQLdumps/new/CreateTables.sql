@@ -1,4 +1,4 @@
--- DROP TABLE Admin;
+ -- DROP TABLE Admin;
 -- 
 -- DROP TABLE Transactions;
 -- DROP TABLE VisitedTA;

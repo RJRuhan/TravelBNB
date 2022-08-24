@@ -5,6 +5,7 @@ const {
     newId,
 } = require('./oracle.connect');
 
+const oracledb = require('oracledb');
 
 async function findPropertyById(data){
 
@@ -27,7 +28,7 @@ async function findProperty(data){
     const query = `SELECT *
     FROM PROPERTY p,LOCATION l,PROPERTYPHOTO pp
     WHERE p.LOCATIONID = l.LOCATIONID AND p.PROPERTYID = pp.PROPERTYID
-    AND COUNTRY = :1
+    AND CITY = :1
     AND AVAILABLEFROM <= TO_DATE(:2,'YYYY-MM-DD') AND AVAILABLEUPTO >= TO_DATE(:3,'YYYY-MM-DD') `;
     const options = {};
 
@@ -249,6 +250,50 @@ async function EditAmenities(data){
     return result;
 }
 
+
+async function findPropertyAmenity(data){
+    const params = [data.propertyid];
+    const query = `SELECT *
+    FROM PropertyAmenities 
+    WHERE PROPERTYID = :1`
+    
+    const options = {};
+
+    const result = await execute(query,params,options);
+
+    // console.log(result.rows);
+
+    return result;
+}
+
+
+async function findLocationFunc(data){
+    
+    const binds = {
+        locationID:{
+        dir: oracledb.BIND_OUT,type: oracledb.NUMBER},
+        Country: data.country,
+        City: data.city,
+    };
+    const query = `
+    BEGIN
+	    :locationID := find_location(:Country,:City);
+    END;
+    `;
+
+    const options = {
+        autoCommit:true,
+    };
+
+    const result = await execute(query,binds,options);
+
+    console.log(result);
+
+    return result;
+}
+
+
+
 module.exports = {
     findProperty,
     findPropertyByAmenities,
@@ -262,5 +307,7 @@ module.exports = {
     EditProperty,
     EditAmenities,
     findPropertyById,
-    findLocationById
+    findLocationById,
+    findPropertyAmenity,
+    findLocationFunc,
 }

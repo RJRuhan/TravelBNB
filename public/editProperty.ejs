@@ -131,35 +131,35 @@
                         <p style="text-align:center"><b>Essentials:</b></p>
                         <ul>
                             <li>
-                                <input type="checkbox" id="amn_wifi" name="amn_wifi" value="wifi" />
+                                <input type="checkbox" id="amn_wifi" name="amn_wifi" value="wifi" <%= result[0].amenities.HASWIFI === '1' ? 'checked' : '' %> />
                                 <label for="amn_wifi">Wifi</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn_kitchen" name="amn_kitchen" value="kitchen" />
+                                <input type="checkbox" id="amn_kitchen" name="amn_kitchen" value="kitchen" <%= result[0].amenities.HASKITCHEN === '1' ? 'checked' : '' %> />
                                 <label for="amn_kitchen">Kitchen</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn_washer" name="amn_washer" value="washer" />
+                                <input type="checkbox" id="amn_washer" name="amn_washer" value="washer" <%= result[0].amenities.HASWASHER === '1' ? 'checked' : '' %> />
                                 <label for="amn_washer">Washer</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn_dryer" name="amn_dryer" value="dryer" />
+                                <input type="checkbox" id="amn_dryer" name="amn_dryer" value="dryer" <%= result[0].amenities.HASDRYER === '1' ? 'checked' : '' %> />
                                 <label for="amn_dryer">Dryer</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn_ac" name="amn_ac" value="ac" />
+                                <input type="checkbox" id="amn_ac" name="amn_ac" value="ac" <%= result[0].amenities.HASAC === '1' ? 'checked' : '' %> />
                                 <label for="amn_ac">AC</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn_heater" name="amn_heater" value="heater" />
+                                <input type="checkbox" id="amn_heater" name="amn_heater" value="heater" <%= result[0].amenities.HASHEATING === '1' ? 'checked' : '' %> />
                                 <label for="amn_heater">Heater</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn_tv" name="amn_tv" value="tv" />
+                                <input type="checkbox" id="amn_tv" name="amn_tv" value="tv" <%= result[0].amenities.HASTV === '1' ? 'checked' : '' %> />
                                 <label for="amn_tv">TV</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn_iron" name="amn_iron" value="iron" />
+                                <input type="checkbox" id="amn_iron" name="amn_iron" value="iron" <%= result[0].amenities.HASIRON === '1' ? 'checked' : '' %> />
                                 <label for="amn_iron">Iron</label>
                             </li>
                         </ul>
@@ -168,27 +168,27 @@
                         <p style="text-align:center"><b>Features:</b><br /></p>
                         <ul>
                             <li>
-                                <input type="checkbox" id="amn_pool" name="amn_pool" value="pool" />
+                                <input type="checkbox" id="amn_pool" name="amn_pool" value="pool" <%= result[0].amenities.HASPOOL === '1' ? 'checked' : '' %> />
                                 <label for="amn_pool">Pool</label>
                             </li>
-                            <li>
-                                <input type="checkbox" id="amn_tub" name="amn_tub" value="tub" />
+                            <!-- <li>
+                                <input type="checkbox" id="amn_tub" name="amn_tub" value="tub" <%= result[0].amenities.HASTUB === '1' ? 'checked' : '' %> />
                                 <label for="amn_tub">Hot tub</label>
-                            </li>
+                            </li> -->
                             <li>
-                                <input type="checkbox" id="amn_parking" name="amn_parking" value="parking" />
+                                <input type="checkbox" id="amn_parking" name="amn_parking" value="parking" <%= result[0].amenities.HASPARKING === '1' ? 'checked' : '' %> />
                                 <label for="amn_parking">Parking</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn_gym" name="amn_gym" value="gym" />
+                                <input type="checkbox" id="amn_gym" name="amn_gym" value="gym" <%= result[0].amenities.HASGYM === '1' ? 'checked' : '' %> />
                                 <label for="amn_gym">Gym</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn_front" name="amn_front" value="front" />
+                                <input type="checkbox" id="amn_front" name="amn_front" value="front" <%= result[0].amenities.HASFRONTYARD === '1' ? 'checked' : '' %> />
                                 <label for="amn_front">Frontyard</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="amn_back" name="amn_back" value="back" />
+                                <input type="checkbox" id="amn_back" name="amn_back" value="back" <%= result[0].amenities.HASBACKYARD === '1' ? 'checked' : '' %> />
                                 <label for="amn_back">Backyard</label>
                             </li>
                         </ul>

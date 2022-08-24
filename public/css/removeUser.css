@@ -49,10 +49,6 @@
     max-width: 1000px;
 }
 
-.item:hover{
-    box-shadow: 0 0 10px 5px grey;
-}
-
 .item-desc{
     margin-left:50px;
     font-size:20px;
