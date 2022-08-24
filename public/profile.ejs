@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;900&family=Ubuntu&display=swap" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous"
+    referrerpolicy="no-referrer" />
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/504d9b5831.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/profile.css">
+  <link href="./css/manage.css" rel="stylesheet" />
+
+</head>
+
+<body>
+
+  <section id="body">
+
+    <div class="container-fluid">
+      <!-- Nav Bar -->
+      <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="">TravelBNB</a>
+
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"> <a class="nav-link btn rounded-5" href=""> Switch to Hosting </a>
+          </li>
+          <li class="nav-item">
+            <div class="dropdown">
+              <a class="btn rounded-5" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-bars"></i><img src="images/profile.jpg" alt="profile" class="profile-img1">
+              </a>
+
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item" href="#"><b>Messages</b></a></li>
+                <li><a class="dropdown-item" href="#"><b>Notifications</b></a></li>
+                <li><a class="dropdown-item" href="#"><b>Trips</b></a></li>
+                <li><a class="dropdown-item" href="#"><b>Wishlists</b></a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Manage listings</a></li>
+                <li><a class="dropdown-item" href="#">Host an experience</a></li>
+                <li><a class="dropdown-item" href="#">Account</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Help</a></li>
+                <li><a class="dropdown-item" href="#">Log out</a></li>
+
+
+              </ul>
+            </div>
+          </li>
+        </ul>
+
+      </nav>
+
+      <div class="row body-row">
+        <div class="col-lg-4 body-column">
+
+          <img src="images/profile.jpg" alt="profile" class="profile-img2"><br>
+          <%= if(locals.host) { %> <!-- if the person is a host -->
+            HOST
+          <% } else { %>
+            GUEST 
+          <% } %>
+          
+        </div>
+        <div class="col-lg-8 body-column body-column2">
+          Name: <%= result[0].FIRSTNAME %> <%= result[0].LASTNAME %><br>
+          E-mail Address: <%= result[0].EMAIL %><br>
+          Phone Number: <%= result[0].PHONENO %><br>
+          <%= if(locals.host) { %>
+            Rating: <%= hostRating %><br>
+            <% } %>
+        </div>
+      </div>
+      <%= if(locals.host) { %>
+      <div class="list-view">
+       
+        <% result.foreach( element =>{ %>
+            <div class="item">
+                <img src="./images/defaultUser.jpg" /><!--use first image of the property-->
+                <div class="item-desc">
+                    <p>
+                        Property Name: <%= element.PROPERTYNAME %><br />
+                        Location: <%= element.SPECIFICADDRESS %>, <%= element.CITY %>, <%= element.COUNTRY %><br />
+                    </p>
+    
+                    <div class="item-actions" id="<%= element.PROPERTYID %>">
+                        <a class="btn btn-info" href="#" role="button">See Property Description</a>
+                        
+                    </div>
+                </div>
+            </div>
+           
+        <% }) %>
+    </div>
+    <% } %>
+    </div>
+
+  </section>
+  <hr>
+
+  <section class="footer">
+
+    <div class="container-fluid">
+      <div class="row footer-row">
+        <div class="col-lg-6 footer-column">
+          <p class="header">Hosting</p>
+          <a href="#" class="link-dark">Try hosting</a>
+          <a href="#" class="link-dark">Explore hosting resources</a>
+          <a href="#" class="link-dark">Visit our community forum</a>
+          <a href="#" class="link-dark">How to host responsibly</a>
+
+        </div>
+        <div class="col-lg-6 footer-column">
+          <p class="header">About</p>
+          <a href="#" class="link-dark">Newsroom</a>
+          <a href="#" class="link-dark">Learn about new features</a>
+          <a href="#" class="link-dark">Letter from our founders</a>
+          <a href="#" class="link-dark">Careers</a>
+
+
+
+
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      <hr>
+      <span>©2022 TravelBNB,Inc.</span>
+      <i class="fa-solid fa-circle footer-icon"></i>
+      <a href="#" class="link-dark">Privacy</a>
+      <i class="fa-solid fa-circle footer-icon"></i>
+      <a href="#" class="link-dark">Terms</a>
+      <i class="fa-solid fa-circle footer-icon"></i>
+      <a href="#" class="link-dark">Sitemap</a>
+
+
+
+      <a href="#" class="link-dark"><i class="fa-brands fa-instagram-square fa-lg social-media-icons"></i></a>
+      <a href="#" class="link-dark"><i class="fa-brands fa-twitter fa-lg social-media-icons"></i></a>
+      <a href="#" class="link-dark"><i class="fa-brands fa-facebook fa-lg social-media-icons"></i></a>
+    </div>
+
+  </section>
+
+</body>
+
+</html>

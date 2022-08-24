@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Review Tourist Attraction</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    
+    <link href="/css/reservation.css" rel="stylesheet" />
+    
+    <script src="https://kit.fontawesome.com/504d9b5831.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;900&family=Ubuntu&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section id="navigation">
+        <div class="container-fluid">
+            <!-- Nav Bar -->
+            <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="">TravelBNB</a>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link btn rounded-5" href=""> Switch to Hosting </a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a class="btn rounded-5" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-bars"></i><img src="images/sehun.jpg" alt="profile" class="profile-img1">
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item" href="#"><b>Messages</b></a></li>
+                                <li><a class="dropdown-item" href="#"><b>Notifications</b></a></li>
+                                <li><a class="dropdown-item" href="#"><b>Trips</b></a></li>
+                                <li><a class="dropdown-item" href="#"><b>Wishlists</b></a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Manage listings</a></li>
+                                <li><a class="dropdown-item" href="#">Host an experience</a></li>
+                                <li><a class="dropdown-item" href="#">Account</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Help</a></li>
+                                <li><a class="dropdown-item" href="#">Log out</a></li>
+
+
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+
+            </nav>
+            
+        </div>
+    </section>
+
+    <h2>Review Tourist Spots you have visited:</h2>
+    <div class="list-view">
+        <%= result.foreach( element => { %>
+        <div class="item">
+            <img src="images/defaultUser.jpg" /><!-- use the image path for first image of ta -->
+            <div class="item-desc">
+                <p>
+                    Name: <%= element.TITLE %><br />
+                    ID: <%= element.TAID %><br />
+                    Location: <%= element.SPECIFICADDRESS %>, <%= element.CITY %>, <%= element.COUNTRY %>
+                </p>
+                
+                <div class="item-actions" id="<%= element.TAID %>">
+                    <a class="btn btn-primary" href="#" role="button">See Description</a>
+                    <a class="btn btn-success" href="#" role="button">Add Review</a>
+                </div>
+            </div>
+        </div>
+        <% }) %>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+</html>
