@@ -121,6 +121,7 @@ body{
 .property-image img{
     height:200px;
     width: 300px;
+    max-width: 300px;
     display:block;
 }
 
@@ -347,9 +348,4 @@ table {
 
 .rating {
     width: 25%;
-}
-
-
-#propertyphotoes{
-  max-width: 300px;
 }

@@ -154,7 +154,7 @@ hr{
 .guest-input{
   width: 50px;
   height: 35px;
-  display: inline-block;
+  /*display: inline-block;*/
   float:right;
   margin-right:150px;
 }
@@ -173,7 +173,7 @@ hr{
   text-align: center;
 }
 
-.full-price,.total-price,.service-fee{
+#full-price, #total-price{
   float: right;
 }
 
@@ -211,4 +211,5 @@ hr{
     float:right;
     margin-bottom:-10px;
 }
+
 
