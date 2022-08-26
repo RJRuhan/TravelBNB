@@ -65,7 +65,7 @@
         <div class="col-lg-4 body-column">
 
           <img src="images/profile.jpg" alt="profile" class="profile-img2"><br>
-          <%= if(locals.host) { %> <!-- if the person is a host -->
+          <%= if(host) { %> <!-- if the person is a host -->
             HOST
           <% } else { %>
             GUEST 
@@ -73,24 +73,24 @@
           
         </div>
         <div class="col-lg-8 body-column body-column2">
-          Name: <%= result[0].FIRSTNAME %> <%= result[0].LASTNAME %><br>
-          E-mail Address: <%= result[0].EMAIL %><br>
-          Phone Number: <%= result[0].PHONENO %><br>
-          <%= if(locals.host) { %>
-            Rating: <%= hostRating %><br>
+          Name: <%= result1[0].FIRSTNAME %> <%= result[0].LASTNAME %><br>
+          E-mail Address: <%= result1[0].EMAIL %><br>
+          Phone Number: <%= result1[0].PHONENO %><br>
+          <%= if(host) { %>
+            Rating: <%= result1[0].HOSTRATING %><br>
             <% } %>
         </div>
       </div>
-      <%= if(locals.host) { %>
+      <%= if(host) { %>
       <div class="list-view">
        
-        <% result.foreach( element =>{ %>
+        <% result2.foreach( element =>{ %>
             <div class="item">
                 <img src="./images/defaultUser.jpg" /><!--use first image of the property-->
                 <div class="item-desc">
                     <p>
                         Property Name: <%= element.PROPERTYNAME %><br />
-                        Location: <%= element.SPECIFICADDRESS %>, <%= element.CITY %>, <%= element.COUNTRY %><br />
+                        Location: <%= element.STREET %>, <%= element.CITY %>, <%= element.COUNTRY %><br />
                     </p>
     
                     <div class="item-actions" id="<%= element.PROPERTYID %>">

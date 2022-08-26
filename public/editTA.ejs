@@ -6,7 +6,7 @@
     <title>Edit tourist Attraction</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/addProperty.css" />
+    <link rel="stylesheet" href="./css/addProperty.css" />
 </head>
 <body>
 
@@ -26,42 +26,42 @@
         </div>
         <div class="col">
 
-            <form name="add_form">
-
+            <form method="post" action="/admin/editTA/<%= result[0].TAID %>">
+                <input type="hidden" class="form-control" id="taID" name="taID" value="<%= result[0].TAID %>" >
                 <div class="form-group row px-2 py-2">
                     <label for="title" class="col-sm-3 col-form-label">Title:</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="title" name="title" required value="<%= result.TITLE %>">
+                        <input type="text" class="form-control" id="title" name="title" required value="<%= result[0].TITLE %>">
                     </div>
                 </div>
 
                 <div class="form-group row px-2 py-2">
                     <label for="street" class="col-sm-3 col-form-label">Street Address:</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="street" name="street" required value="<%= result.STREET %>">
+                        <input type="text" class="form-control" id="street" name="street" required value="<%= result[0].STREET %>">
                     </div>
                 </div>
                 <div class="form-group row px-2 py-2">
                     <div class="form-group col-sm">
                         <label for="country">Country:</label>
-                        <input type="text" class="form-control" id="country" name="country" required disabled value="<%= result.COUNTRY %>">
+                        <input type="text" class="form-control" id="country" name="country" required disabled value="<%= result[0].COUNTRY %>">
                     </div>
                     
                     <div class="form-group col-sm">
                         <label for="city">City:</label>
-                        <input type="text" class="form-control" id="city" name="city" required disabled value="<%= result.CITY %>">
+                        <input type="text" class="form-control" id="city" name="city" required disabled value="<%= result[0].CITY %>">
                     </div>
                 </div>
                 <div class="form-group row px-2 py-2">
                     <label for="type" class="col-sm-3 col-form-label">Select type:</label>
                     <div class="col-sm-9">
-                        <select id="type" class="form-control" name="type" required disabled value="<%= result.TYPE %>">
-                            <option value="park">Amusement Parks</option>
-                            <option value="landmark">Landmark</option>
-                            <option value="beach">Beaches</option>
-                            <option value="waterfall">Waterfall</option>
-                            <option value="zoo">Zoos and Safari</option>
-                            <option value="museum">Museum and Gallaries</option>
+                        <select id="type" class="form-control" name="type" required disabled>
+                            <option value="park" <%= result[0].TYPE == 'park' ? 'selected' : '' %>>Amusement Parks</option>
+                            <option value="landmark" <%= result[0].TYPE == 'landmark' ? 'selected' : '' %>>Landmark</option>
+                            <option value="beach" <%= result[0].TYPE == 'beach' ? 'selected' : '' %>>Beaches</option>
+                            <option value="waterfall" <%= result[0].TYPE == 'waterfall' ? 'selected' : '' %>>Waterfall</option>
+                            <option value="zoo" <%= result[0].TYPE == 'zoo' ? 'selected' : '' %>>Zoos and Safari</option>
+                            <option value="museum" <%= result[0].TYPE == 'museum' ? 'selected' : '' %>>Museum and Galleries</option>
                         </select>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                 
                 <div class="form-group row px-2 py-2">
                     <label class="form-label" for="description">Add Description (500 characters):</label>
-                    <textarea class="form-control" id="description" name="description" maxlength="500" rows="4" value="<%= result.DESCRIPTION %>"></textarea>
+                    <textarea class="form-control" id="description" name="description" maxlength="500" rows="4" value="<%= result[0].DESCRIPTION %>"></textarea>
 
                 </div>
                 <div class="form-group row px-2 py-2">

@@ -50,9 +50,9 @@
                     Name: <%= element.TITLE %><br />
                     Location: <%= element.SPECIFICADDRESS %>, <%= element.CITY %>, <%= element.COUNTRY %>
                     <div class="item-actions" id="<%= element.USERID %>">
-                        <a class="btn btn-primary" href="#" role="button">See DescriptionProfile</a>
-                        <a class="btn btn-info" href="#" role="button">Edit details</a>
-                        <button class="btn btn-danger" type="button">Remove</button>
+                        <a class="btn btn-primary" href="/ta/<%= element.TAID %>" role="button">See DescriptionProfile</a>
+                        <a class="btn btn-info" href="/admin/editTA/<%= element.TAID %>" role="button">Edit details</a>
+                        <a class="btn btn-danger" type="button">Remove</a>
                     </div>
                 </div>
 

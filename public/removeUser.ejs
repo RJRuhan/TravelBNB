@@ -27,7 +27,7 @@
                 <a href="/admin/removeUser">Remove User</a>
             </p>
             <p>
-                <a href="/admin/removeProperty.html">Remove Property</a>
+                <a href="/admin/removeProperty">Remove Property</a>
             </p>
             <p>
                 <a href="/admin/addTA">Add Tourist Attraction</a>
@@ -51,9 +51,9 @@
                     User Type: <%= element.TYPE %><br />
                     No. of Complaints: <%= element.TOTAL %></p>
                     <div class="item-actions" id="<%= element.USERID %>">
-                        <a class="btn btn-primary" href="#" role="button">See Profile</a>
-                        <a class="btn btn-info" href="#" role="button">See Complaints</a>
-                        <button class="btn btn-danger" type="button">Remove User</button>
+                        <a class="btn btn-primary" href="/profile/<%= element.USERID %>" role="button">See Profile</a>
+                        <a class="btn btn-info" href="/admin/seeComplaintsUser/<%= element.USERID %>" role="button">See Complaints</a>
+                        <a class="btn btn-danger" type="button" href="/admin/userremove/<%= element.USERID %>">Remove User</a>
                     </div>
                 </div>
 

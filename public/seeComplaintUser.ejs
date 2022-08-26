@@ -17,7 +17,7 @@
             User Name: <%= result[0].FIRSTNAME %> <%= result[0].LASTNAME %><br />
             User Type: <%= result[0].TYPE %><br />
             No. of Complaints: <%= result.length %></p>
-            <button class="btn btn-danger" type="button">Remove User</button>
+            <a class="btn btn-danger" type="button" href="/admin/userremove/<%= result[0].USERID %>">Remove User</a>
         </div>
     </div>
     <div class="complaints-list">

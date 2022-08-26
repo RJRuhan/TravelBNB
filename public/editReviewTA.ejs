@@ -15,8 +15,8 @@
 
     <div class="info">
         <p>
-            Tourist Spot: <span id="taName"><%= name %></span><br />
-            Loaction: <span id="location"><%= location %></span>
+            Tourist Spot: <span id="taName"><%= result[0].TITLE %></span><br />
+            Location: <span id="location"><%= result[0].SPECIFICADDRESS %>, <%= result[0].CITY %>, <%= result[0].COUNTRY %></span>
 
         </p>
     </div>
@@ -34,7 +34,9 @@
                 <li class="star"><i class="fa-solid fa-star"></i></li>
             </ul>
         </div>
-        <form>
+        <form method="post" action="/editReviewTA/<%= result[0].TAID %>">
+            <input type="hidden" class="form-control" id="taID" name="taID" value="<%= result[0].TAID %>" >
+            <input type="hidden" class="form-control" id="rating" name="rating" value="0" >
             <label for="desc" style="font-size:20px;">Add comments:</label><br />
             <textarea id="desc" name="desc" rows="3" cols="60"></textarea><br />
             <p>

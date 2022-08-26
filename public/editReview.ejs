@@ -15,8 +15,8 @@
 
     <div class="info">
         <p>
-            Property Name: <span id="pName"><%= property %>></span><br />
-            Host Name: <span id="hName"><%= host %></span><br />
+            Property Name: <span id="pName"><%= result[0].PROPERTYNAME %>></span><br />
+            Host Name: <span id="hName"><%= result[0].HOSTNAME %></span><br />
         </p>
     </div>
 
@@ -33,7 +33,9 @@
                 <li class="star"><i class="fa-solid fa-star"></i></li>
             </ul>
         </div>
-        <form>
+        <form method="post" action="/editReview/<%= result[0].PROPERTYID %>" id="editReviewForm">
+            <input type="hidden" class="form-control" id="pid" name="propertyid" value="<%= result[0].PROPERTYID %>" >
+            <input type="hidden" class="form-control" id="rating" name="rating" value="0" >
             <label for="desc" style="font-size:20px;">Add comments:</label><br />
             <textarea id="desc" name="desc" rows="3" cols="60"></textarea><br />
             <p>
