@@ -24,10 +24,10 @@
         <% result.foreach( element => { %>
         <div class="complaint">
             <div class="complaint-desc">
-                <p>Property ID: <%= element.PROPERTYID %>&nbsp; &nbsp;&nbsp;&nbsp;Reservation ID: <%= element.RESERVATIONID %><br />
-                Description: <% element.DESCRIPTION %></p>
+                <p>Property ID: <%= element.PROPERTYID %>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reservation ID: <%= element.RESERVATIONID %><br />
+                Complaint Type: Against <%= element.COMPLAINTTYPE %><br>
+                Description: <%= element.DESCRIPTION %></p>
             </div>
-
         </div>
         <% }) %>
     </div>
