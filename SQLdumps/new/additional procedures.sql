@@ -28,3 +28,17 @@ begin
 	delete from HOST where HOSTID=uID;
 END;
 /
+
+--find type (host or guest) function
+
+create or REPLACE FUNCTION find_type(uID in NUMBER) return varchar2 AS
+result NUMBER;
+begin
+	select count(*) into result from HOST where HOSTID=uID;
+	if result = 0 THEN
+		return 'GUEST';
+	ELSE
+		return 'HOST';
+	end if;
+end;
+/
