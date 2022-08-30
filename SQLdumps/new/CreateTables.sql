@@ -159,9 +159,7 @@ CREATE TABLE Property(
 	GuestNum INT NOT NULL,
 	
 	IsRefundable CHAR DEFAULT '0' CHECK(IsRefundable IN ('0','1')),
-	CancellationPeriod INT,
--- 	CancellationType VARCHAR(10),
-	RefundRate NUMBER CHECK(RefundRate >= 0 AND RefundRate < 100),
+	RefundRate NUMBER CHECK(RefundRate >= 0 AND RefundRate <= 100),
 	
 	AvailableFrom DATE,
 	AvailableUpto DATE,
