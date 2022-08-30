@@ -8,8 +8,8 @@ const {
 async function findPropertyDetails(data){
     const params = [data.USERID];
     const query = `SELECT P.PROPERTYNAME AS PROPERTYNAME, P.STREET AS STREET, L.CITY AS CITY, L.COUNTRY AS COUNTRY,
-                    COUNT(T.RESERVATIONID) AS RESERVE, SUM(T.AMOUNT) AS EARN, TO_CHAR(ADD_MONTHS( SYSDATE, -1 ), 'Month') AS MONTH
-                    FROM PROPERTY P, LOCATION L, TRANSACTION T
+                    COUNT(T.TRANSACTIONID) AS RESERVE, SUM(T.AMOUNT) AS EARN, TO_CHAR(ADD_MONTHS( SYSDATE, -1 ), 'Month') AS MONTH
+                    FROM PROPERTY P, LOCATION L, TRANSACTIONS T
                     WHERE P.HOSTID=T.HOSTID AND
                     P.LOCATIONID=L.LOCATIONID AND
                     P.HOSTID=:1
@@ -37,7 +37,7 @@ async function findIfHost(id){
 async function findEarningMonth(data){
     const params=[data.USERID];
     const query=`SELECT H.BANKACCOUNT AS BANKACCOUNT, SUM(T.AMOUNT) AS TOTALMONTH, TO_CHAR(ADD_MONTHS( SYSDATE, -1 ), 'Month') AS MONTH
-                FROM HOST H, TRANSACTION T
+                FROM HOST H, TRANSACTIONS T
                 WHERE H.HOSTID=T.HOSTID
                 AND H.HOSTID=:1
                 AND T.DATEOFTRANSACTION>=TRUNC( ADD_MONTHS( SYSDATE, -1 ), 'MM' );`;
@@ -49,7 +49,7 @@ async function findEarningMonth(data){
 async function findEarningTotal(data){
     const params=[data.USERID];
     const query=`SELECT SUM(T.AMOUNT) AS TOTAL
-                FROM TRANSACTION T
+                FROM TRANSACTIONS T
                 WHERE T.HOSTID=:1;`;
     const options ={};
     const result = await execute(query, params, options);
@@ -59,7 +59,7 @@ async function findEarningTotal(data){
 async function findSpentMonth(data){
     const params=[data.USERID];
     const query=`SELECT G.CREDITCARD AS CREDITCARD, SUM(T.AMOUNT) TOTALSPENTMONTH, TO_CHAR(ADD_MONTHS( SYSDATE, -1 ), 'Month') AS MONTH
-                FROM GUEST G, TRANSACTION T
+                FROM GUEST G, TRANSACTIONS T
                 WHERE G.GUESTID=T.GUESTID
                 AND G.GUESTID=:1
                 AND T.DATEOFTRANSACTION>=TRUNC( ADD_MONTHS( SYSDATE, -1 ), 'MM' );`
@@ -71,7 +71,7 @@ async function findSpentMonth(data){
 async function findSpentTotal(data){
     const params=[data.USERID];
     const query=`SELECT SUM(T.AMOUNT) AS TOTALSPENT
-                FROM TRANSACTION T
+                FROM TRANSACTIONS T
                 WHERE T.GUESTID=:1;`;
     const options ={};
     const result = await execute(query, params, options);
@@ -91,7 +91,7 @@ async function findTotalGuest(data){
 async function findTotalReserve(data){
     const params=[data.USERID];
     const query = `SELECT COUNT(TRANSACTIONID) AS RESERVE
-                FROM TRANSACTION
+                FROM TRANSACTIONS
                 WHERE HOSTID=:1;
                 AND UPPER(TYPE)='RESERVE';`;
     const options ={};
@@ -102,7 +102,7 @@ async function findTotalReserve(data){
 async function findTotalCancel(data){
     const params=[data.USERID];
     const query = `SELECT COUNT(TRANSACTIONID) AS CANCEL
-                FROM TRANSACTION
+                FROM TRANSACTIONS
                 WHERE HOSTID=:1;
                 AND UPPER(TYPE)='CANCEL';`;
     const options ={};
