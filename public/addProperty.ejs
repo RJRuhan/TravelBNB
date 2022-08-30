@@ -114,10 +114,7 @@
                         <label for="refund-rate">Refund rate:</label>
                         <input type="number" min="40" max="100" class="form-control" id="refund-rate" name="refund_rate" disabled required />
                     </div>
-                    <div class="form-group col-sm">
-                        <label for="refund-period">Refund period:(in days)</label>
-                        <input type="number" min="3" class="form-control" id="refund-period" name="refund_period" disabled required />
-                    </div>
+                    
                 </div>
                 <div class="form-group row px-2 py-2">
                     <p style="text-align:center;font-size:18px;"><b>Check Amenities:</b></p>
@@ -215,17 +212,13 @@
         
         function check(givenID) {
             var input1 = document.getElementById("refund-rate");
-            var input2 = document.getElementById("refund-period");
 
             if (givenID.value == "yes") {
                 input1.disabled = false;
-                input2.disabled = false;
             }
             else {
                 input1.value = '';
-                input2.value = '';
                 input1.disabled = true;
-                input2.disabled = true;
             }
 
         }
