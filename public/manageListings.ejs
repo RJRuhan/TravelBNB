@@ -20,30 +20,36 @@
             <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="">TravelBNB</a>
                 <ul class="navbar-nav ms-auto">
+                    <% if(!host){ %>
                     <li class="nav-item">
-                        <a class="nav-link btn rounded-5" href=""> Switch to Hosting </a>
+                        <a class="nav-link btn rounded-5" href=""> Become a Host </a><!--for users who are not hosts-->
                     </li>
+                    <% } %>
                     <li class="nav-item">
                         <div class="dropdown">
                             <a class="btn rounded-5" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa-solid fa-bars"></i><img src="/images/defaultUser.jpg" alt="profile" class="profile-img1">
+                                <i class="fa-solid fa-bars"></i><img src="images/defaultUser.jpg" alt="profile" class="profile-img1"><!--add image path of user-->
                             </a>
 
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
-                                <li><a class="dropdown-item" href="#"><b>Messages</b></a></li>
-                                <li><a class="dropdown-item" href="#"><b>Notifications</b></a></li>
-                                <li><a class="dropdown-item" href="#"><b>Trips</b></a></li>
+                                <li><a class="dropdown-item" href="#"><b>Trips</b></a></li><!--my trips-->
                                 <li><a class="dropdown-item" href="#"><b>Wishlists</b></a></li>
+                                <li><a class="dropdown-item" href="#"><b>My Dashboard</b></a></li>
+                                <!--add dashboard if possible-->
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Manage listings</a></li>
-                                <li><a class="dropdown-item" href="#">Host an experience</a></li>
-                                <li><a class="dropdown-item" href="#">Account</a></li>
+                                <% if(host){ %>
+                                <li><a class="dropdown-item" href="#">Manage listings</a></li><!--for host only-->
+                                <li><a class="dropdown-item" href="#">Reserved Properties</a></li><!--for host only-->
+                                <% } %>
+                                <li><a class="dropdown-item" href="#">My Reservations</a></li><!--add my reservations-->
+                                <li><a class="dropdown-item" href="#">My Reviews</a></li><!--add my reviews-->
+                                <li><a class="dropdown-item" href="#">My Profile</a></li><!--change to my profile-->
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Help</a></li>
+                                <li><a class="dropdown-item" href="#">Complain</a></li> <!--remove help option change to complaint-->
                                 <li><a class="dropdown-item" href="#">Log out</a></li>
 
 
