@@ -106,9 +106,7 @@
                         <span id='variable2' hidden >
                             <%= result[0].REFUNDRATE %>
                         </span>
-                        <span id='variable3' hidden >
-                            <%= result[0].CANCELLATIONPERIOD %>
-                        </span>
+                        
                         <label for="is_refund">Can be Refunded?:</label>
                         <select id="is_refund" class="form-control" name="is_refund" required onchange="check(this)">
                             <option value="no">No</option>
@@ -120,10 +118,7 @@
                         <label for="refund_rate">Refund rate:</label>
                         <input type="number" min="40" max="100" class="form-control" id="refund_rate" name="refund_rate" disabled />
                     </div>
-                    <div class="form-group col-sm">
-                        <label for="refund_period">Refund period:(in days)</label>
-                        <input type="number" min="3" class="form-control" id="refund_period" name="refund_period" disabled />
-                    </div>
+               
                 </div>
                 <div class="form-group row px-2 py-2">
                     <p style="text-align:center;font-size:18px;"><b>Check Amenities:</b></p>
@@ -224,47 +219,36 @@
             // console.log('here')
             var set1 = document.getElementById("is_refund");
             var set2 = document.getElementById("refund_rate");
-            var set3 = document.getElementById("refund_period");
 
             var variable1 = document.getElementById("variable1").textContent.trim();
             document.getElementById("variable1").remove();
             var variable2 = document.getElementById("variable2").textContent.trim();
             document.getElementById("variable2").remove();
-            var variable3 = document.getElementById("variable3").textContent.trim();
-            document.getElementById("variable3").remove();
 
             // console.log(variable1);
 
             if( variable1 == 0 ){
                 set1.value = "no";
                 set2.value="";
-                set3.value="";
                 set2.disabled = true;
-                set3.disabled = true;
             }
             else{
                 set1.value = "yes";
                 set2.disabled = false;
-                set3.disabled = false
                 set2.value = variable2;
-                set3.value = variable3;
             }
             
         }
 
         function check(givenID) {
             var input1 = document.getElementById("refund_rate");
-            var input2 = document.getElementById("refund_period");
 
             if (givenID.value == "yes") {
                 input1.disabled = false;
-                input2.disabled = false;
             }
             else {
                 input1.value="";
-                input2.value="";
                 input1.disabled = true;
-                input2.disabled = true;
             }
 
         }
