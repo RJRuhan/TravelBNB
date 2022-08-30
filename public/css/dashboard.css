@@ -1,0 +1,49 @@
+.content{
+    padding:2%;
+    margin-top: 100px;
+}
+
+ul, li{
+    list-style-type:none;
+    margin:0;
+    margin-top:-5px;
+    padding:0;
+}
+
+li{
+    display:inline;
+    margin-left:10px;
+    font-size:17px;
+}
+
+.icon-big{
+    font-size: 75px;
+    margin:auto;
+}
+
+.title{
+    font-size:25px;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
+
+.card-category{
+    font-size:25px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.page-title{
+    text-align: center;
+    font-weight: bold;
+}
+
+.property-details{
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    margin: auto;
+}
+
+.details{
+    border-right: black solid 2px;
+    
+}
