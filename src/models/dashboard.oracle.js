@@ -14,7 +14,7 @@ async function findPropertyDetails(data){
                     P.LOCATIONID=L.LOCATIONID AND
                     P.HOSTID=:1
                     AND T.DATEOFTRANSACTION>=TRUNC( ADD_MONTHS( SYSDATE, -1 ), 'MM' )
-                    GROUP BY P.PROPERTYID, PROPERTYNAME, STREET, CITY, COUNTRY;`;
+                    GROUP BY P.PROPERTYID, P.PROPERTYNAME, P.STREET, L.CITY, L.COUNTRY, TO_CHAR(ADD_MONTHS( SYSDATE, -1 ), 'Month');`;
     const options = {};
     const result=await execute(query,params, options);
     return result;
