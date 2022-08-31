@@ -7,13 +7,14 @@ const {
 
 async function findPropertyDetails(data){
     const params = [data.USERID];
-    const query = `SELECT P.PROPERTYNAME AS PROPERTYNAME, P.STREET AS STREET, L.CITY AS CITY, L.COUNTRY AS COUNTRY,
+    const query = `SELECT P.PROPERTYID, P.PROPERTYNAME AS PROPERTYNAME, P.STREET AS STREET, L.CITY AS CITY, L.COUNTRY AS COUNTRY,
                     COUNT(T.TRANSACTIONID) AS RESERVE, SUM(T.AMOUNT) AS EARN, TO_CHAR(ADD_MONTHS( SYSDATE, -1 ), 'Month') AS MONTH
                     FROM PROPERTY P, LOCATION L, TRANSACTIONS T
-                    WHERE P.HOSTID=T.HOSTID AND
+                    WHERE P.PROPERTYID=T.PROPERTYID AND
                     P.LOCATIONID=L.LOCATIONID AND
                     P.HOSTID=:1
-                    AND T.DATEOFTRANSACTION>=TRUNC( ADD_MONTHS( SYSDATE, -1 ), 'MM' );`;
+                    AND T.DATEOFTRANSACTION>=TRUNC( ADD_MONTHS( SYSDATE, -1 ), 'MM' )
+                    GROUP BY P.PROPERTYID, PROPERTYNAME, STREET, CITY, COUNTRY;`;
     const options = {};
     const result=await execute(query,params, options);
     return result;
