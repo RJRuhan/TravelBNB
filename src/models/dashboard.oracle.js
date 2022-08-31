@@ -14,7 +14,7 @@ async function findPropertyDetails(data){
                     P.LOCATIONID=L.LOCATIONID AND
                     P.HOSTID=:1
                     AND T.DATEOFTRANSACTION>=TRUNC( ADD_MONTHS( SYSDATE, -1 ), 'MM' )
-                    GROUP BY P.PROPERTYID, P.PROPERTYNAME, P.STREET, L.CITY, L.COUNTRY, TO_CHAR(ADD_MONTHS( SYSDATE, -1 ), 'Month');`;
+                    GROUP BY P.PROPERTYID, PROPERTYNAME, STREET, CITY, COUNTRY;`;
     const options = {};
     const result=await execute(query,params, options);
     return result;
@@ -41,7 +41,8 @@ async function findEarningMonth(data){
                 FROM HOST H, TRANSACTIONS T
                 WHERE H.HOSTID=T.HOSTID
                 AND H.HOSTID=:1
-                AND T.DATEOFTRANSACTION>=TRUNC( ADD_MONTHS( SYSDATE, -1 ), 'MM' );`;
+                AND T.DATEOFTRANSACTION>=TRUNC( ADD_MONTHS( SYSDATE, -1 ), 'MM' )
+                GROUP BY H.BANKACCOUNT, TO_CHAR(ADD_MONTHS( SYSDATE, -1 ), 'Month');`;
     const options ={};
     const result = await execute(query, params, options);
     return result;
@@ -63,7 +64,8 @@ async function findSpentMonth(data){
                 FROM GUEST G, TRANSACTIONS T
                 WHERE G.GUESTID=T.GUESTID
                 AND G.GUESTID=:1
-                AND T.DATEOFTRANSACTION>=TRUNC( ADD_MONTHS( SYSDATE, -1 ), 'MM' );`
+                AND T.DATEOFTRANSACTION>=TRUNC( ADD_MONTHS( SYSDATE, -1 ), 'MM' )
+                GROUP BY G.CREDITCARD, TO_CHAR(ADD_MONTHS( SYSDATE, -1 ), 'Month');`
     const options ={};
     const result = await execute(query, params, options);
     return result;
@@ -93,7 +95,7 @@ async function findTotalReserve(data){
     const params=[data.USERID];
     const query = `SELECT COUNT(TRANSACTIONID) AS RESERVE
                 FROM TRANSACTIONS
-                WHERE HOSTID=:1;
+                WHERE HOSTID=:1
                 AND UPPER(TYPE)='RESERVE';`;
     const options ={};
     const result = await execute(query, params, options);
@@ -104,7 +106,7 @@ async function findTotalCancel(data){
     const params=[data.USERID];
     const query = `SELECT COUNT(TRANSACTIONID) AS CANCEL
                 FROM TRANSACTIONS
-                WHERE HOSTID=:1;
+                WHERE HOSTID=:1
                 AND UPPER(TYPE)='CANCEL';`;
     const options ={};
     const result = await execute(query, params, options);
