@@ -17,14 +17,7 @@ TravelBNB is a web application inspired by Airbnb that allows users to book acco
 - **Database**: OracleDB
 - **Authentication**: JSON Web Tokens (JWT)
 
-## Getting Started
-
-### Prerequisites
-
-- Node.js (version >= 14.x)
-- PostgreSQL (version >= 12.x)
-
-### Installation
+## Installation
 
 First, run the following command to install all dependencies:
 
