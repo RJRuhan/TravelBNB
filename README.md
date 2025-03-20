@@ -8,7 +8,6 @@ TravelBNB is a web application inspired by Airbnb that allows users to book acco
 - **Property Management**: Hosts can easily create, update, and manage their property listings.
 - **Search Functionality**: Users can search for properties based on various criteria, including location, price, and availability.
 - **Booking System**: Guests can book accommodations and view their reservations.
-- **Responsive Design**: The application is mobile-friendly and accessible on various devices.
 
 ## Technologies Used
 
